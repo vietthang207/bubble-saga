@@ -1,0 +1,10 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '8.1'
+
+target 'BubbleSaga' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for BubbleSaga
+	pod 'PhysicsEngine', :git => 'https://vietthang207@bitbucket.org/cs3217/2017-ps4-a0126513n.git', :branch => 'pod', :tag => '0.0.1'
+end

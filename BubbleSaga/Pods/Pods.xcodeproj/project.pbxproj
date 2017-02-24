@@ -1,0 +1,562 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		014ADF24C2997A7311DF1937020D9B31 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		11DD4160964B42224A09C8DF7F2A46E4 /* PhysicsEngine-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 18CDB4268CE14D3DCE9B98D041FCE1E1 /* PhysicsEngine-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B6BAE06319DCCFAC961B94BB9C376F6 /* Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B77DDE9ABA0C0F9BA68C22C17E79B5 /* Collidable.swift */; };
+		7588EBF4E5AE1E9F6AFCBA34C685637F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		770F5BEF92746460B23E341A7BDC9E3F /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A1CD585F52B6FD2281693483660A75 /* Projectile.swift */; };
+		A053C5440BE76C9B41CEE8301CC168A8 /* Pods-BubbleSaga-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EC0FCBF65F14C1632F9290F9344469A /* Pods-BubbleSaga-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BE847DA500D2F86ACD7EF835DB114549 /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9BD831A1FB1B5F66C4791856F3AE8F /* GameObject.swift */; };
+		C007F6FAA92EC0F0AB9DDAD421ADE67F /* CircleCollidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C524827A14AE54E72912DB639CB23AEF /* CircleCollidable.swift */; };
+		C04D8DC01F668D3897189B8CDF10F59E /* VerticalCollidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA19298E25FD92A265A5940F30549E /* VerticalCollidable.swift */; };
+		C1D6C393449B04B915D6D67D784CDEE1 /* HorizontalCollidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52475A2B4D524E1311313B22BE53501F /* HorizontalCollidable.swift */; };
+		DFE2E5D0B1862FC77BF606633D899571 /* Pods-BubbleSaga-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BD2174FB48AB16BB2765346C38093C /* Pods-BubbleSaga-dummy.m */; };
+		E4CBCC1E25DC83E4941D68D9312D6FD4 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = F917A2BD3D2B0FBCE8D1099513AB871A /* World.swift */; };
+		ED4FA64172D294B4C1043A76498D462A /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4DAB57BFF68FDCBAFE93C02DFC9768 /* Math.swift */; };
+		FF7BE2257F0410BA8EE363C76866456B /* PhysicsEngine-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC1C6CFD1BC964ABD2217006C3DC29D /* PhysicsEngine-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FF77BDD096CF37C94673B58CB7B47FFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BC70CA98C4DD3E070706E06CB0CCADA1;
+			remoteInfo = PhysicsEngine;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		18CDB4268CE14D3DCE9B98D041FCE1E1 /* PhysicsEngine-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PhysicsEngine-umbrella.h"; sourceTree = "<group>"; };
+		196B45097D7BE6A700965556DB2BDB73 /* PhysicsEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PhysicsEngine.framework; path = PhysicsEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EC0FCBF65F14C1632F9290F9344469A /* Pods-BubbleSaga-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BubbleSaga-umbrella.h"; sourceTree = "<group>"; };
+		32BD2174FB48AB16BB2765346C38093C /* Pods-BubbleSaga-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BubbleSaga-dummy.m"; sourceTree = "<group>"; };
+		34187076A5697B815B550D8B6E77AB77 /* Pods-BubbleSaga-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BubbleSaga-acknowledgements.markdown"; sourceTree = "<group>"; };
+		3460684E0EA87F0C002DC2B220C989F7 /* Pods-BubbleSaga.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BubbleSaga.debug.xcconfig"; sourceTree = "<group>"; };
+		40E85B95C6F0657EC482D7EF6692A610 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49A77DBB819581E10D469476919B23E8 /* Pods-BubbleSaga-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BubbleSaga-resources.sh"; sourceTree = "<group>"; };
+		52475A2B4D524E1311313B22BE53501F /* HorizontalCollidable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HorizontalCollidable.swift; path = GameEngine/GameEngine/HorizontalCollidable.swift; sourceTree = "<group>"; };
+		82F207B3058FF56EB828475C2094C1DC /* Pods-BubbleSaga-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BubbleSaga-acknowledgements.plist"; sourceTree = "<group>"; };
+		842A07161D93A773FBC9582BBE03BC79 /* PhysicsEngine.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PhysicsEngine.xcconfig; sourceTree = "<group>"; };
+		87A1CD585F52B6FD2281693483660A75 /* Projectile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Projectile.swift; path = GameEngine/GameEngine/Projectile.swift; sourceTree = "<group>"; };
+		8A8CE37D2B6533FA5D28F033E47B363D /* Pods_BubbleSaga.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_BubbleSaga.framework; path = "Pods-BubbleSaga.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		97B48C0E3C52D8084D808A344D2C2F1C /* PhysicsEngine.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = PhysicsEngine.modulemap; sourceTree = "<group>"; };
+		9E4DAB57BFF68FDCBAFE93C02DFC9768 /* Math.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Math.swift; path = GameEngine/GameEngine/Math.swift; sourceTree = "<group>"; };
+		A67C8D3DD94175879D9EE6C6D62D21B9 /* Pods-BubbleSaga.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-BubbleSaga.modulemap"; sourceTree = "<group>"; };
+		B3B77DDE9ABA0C0F9BA68C22C17E79B5 /* Collidable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Collidable.swift; path = GameEngine/GameEngine/Collidable.swift; sourceTree = "<group>"; };
+		BC38A0D74CA985979A63CAF68038CF38 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C524827A14AE54E72912DB639CB23AEF /* CircleCollidable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CircleCollidable.swift; path = GameEngine/GameEngine/CircleCollidable.swift; sourceTree = "<group>"; };
+		C9C846CB1378271EA00D42E118BDEF80 /* Pods-BubbleSaga.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BubbleSaga.release.xcconfig"; sourceTree = "<group>"; };
+		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		CEC1C6CFD1BC964ABD2217006C3DC29D /* PhysicsEngine-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PhysicsEngine-dummy.m"; sourceTree = "<group>"; };
+		DAEEBC2D47A180792FEB9B8406B78437 /* Pods-BubbleSaga-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BubbleSaga-frameworks.sh"; sourceTree = "<group>"; };
+		DD9BD831A1FB1B5F66C4791856F3AE8F /* GameObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GameObject.swift; path = GameEngine/GameEngine/GameObject.swift; sourceTree = "<group>"; };
+		EBCFC467080FD014FF070F6C440EEA7D /* PhysicsEngine-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PhysicsEngine-prefix.pch"; sourceTree = "<group>"; };
+		F917A2BD3D2B0FBCE8D1099513AB871A /* World.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = World.swift; path = GameEngine/GameEngine/World.swift; sourceTree = "<group>"; };
+		FEFA19298E25FD92A265A5940F30549E /* VerticalCollidable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VerticalCollidable.swift; path = GameEngine/GameEngine/VerticalCollidable.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5B17536463D77EABCF31BA82DFF8F98A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				014ADF24C2997A7311DF1937020D9B31 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE82E83B6A6A6C88CE1F8FB2603E9102 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7588EBF4E5AE1E9F6AFCBA34C685637F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0A2475903AFFC06A066B56CC22E2367B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F5BB01AACA1370D1749896C592F9650A /* PhysicsEngine */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		693A8E4A1755CAA72314407A72B6BC3C /* Pods-BubbleSaga */ = {
+			isa = PBXGroup;
+			children = (
+				BC38A0D74CA985979A63CAF68038CF38 /* Info.plist */,
+				A67C8D3DD94175879D9EE6C6D62D21B9 /* Pods-BubbleSaga.modulemap */,
+				34187076A5697B815B550D8B6E77AB77 /* Pods-BubbleSaga-acknowledgements.markdown */,
+				82F207B3058FF56EB828475C2094C1DC /* Pods-BubbleSaga-acknowledgements.plist */,
+				32BD2174FB48AB16BB2765346C38093C /* Pods-BubbleSaga-dummy.m */,
+				DAEEBC2D47A180792FEB9B8406B78437 /* Pods-BubbleSaga-frameworks.sh */,
+				49A77DBB819581E10D469476919B23E8 /* Pods-BubbleSaga-resources.sh */,
+				1EC0FCBF65F14C1632F9290F9344469A /* Pods-BubbleSaga-umbrella.h */,
+				3460684E0EA87F0C002DC2B220C989F7 /* Pods-BubbleSaga.debug.xcconfig */,
+				C9C846CB1378271EA00D42E118BDEF80 /* Pods-BubbleSaga.release.xcconfig */,
+			);
+			name = "Pods-BubbleSaga";
+			path = "Target Support Files/Pods-BubbleSaga";
+			sourceTree = "<group>";
+		};
+		7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				0A2475903AFFC06A066B56CC22E2367B /* Pods */,
+				E2749DCA3324FEA1D985957639B92275 /* Products */,
+				E54181B4CA5528C82F540FEA108AA974 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E2749DCA3324FEA1D985957639B92275 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				196B45097D7BE6A700965556DB2BDB73 /* PhysicsEngine.framework */,
+				8A8CE37D2B6533FA5D28F033E47B363D /* Pods_BubbleSaga.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E54181B4CA5528C82F540FEA108AA974 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				693A8E4A1755CAA72314407A72B6BC3C /* Pods-BubbleSaga */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		F5BB01AACA1370D1749896C592F9650A /* PhysicsEngine */ = {
+			isa = PBXGroup;
+			children = (
+				C524827A14AE54E72912DB639CB23AEF /* CircleCollidable.swift */,
+				B3B77DDE9ABA0C0F9BA68C22C17E79B5 /* Collidable.swift */,
+				DD9BD831A1FB1B5F66C4791856F3AE8F /* GameObject.swift */,
+				52475A2B4D524E1311313B22BE53501F /* HorizontalCollidable.swift */,
+				9E4DAB57BFF68FDCBAFE93C02DFC9768 /* Math.swift */,
+				87A1CD585F52B6FD2281693483660A75 /* Projectile.swift */,
+				FEFA19298E25FD92A265A5940F30549E /* VerticalCollidable.swift */,
+				F917A2BD3D2B0FBCE8D1099513AB871A /* World.swift */,
+				FDBDFCC501D6A778CC2E9AE25F2045CF /* Support Files */,
+			);
+			name = PhysicsEngine;
+			path = PhysicsEngine;
+			sourceTree = "<group>";
+		};
+		FDBDFCC501D6A778CC2E9AE25F2045CF /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				40E85B95C6F0657EC482D7EF6692A610 /* Info.plist */,
+				97B48C0E3C52D8084D808A344D2C2F1C /* PhysicsEngine.modulemap */,
+				842A07161D93A773FBC9582BBE03BC79 /* PhysicsEngine.xcconfig */,
+				CEC1C6CFD1BC964ABD2217006C3DC29D /* PhysicsEngine-dummy.m */,
+				EBCFC467080FD014FF070F6C440EEA7D /* PhysicsEngine-prefix.pch */,
+				18CDB4268CE14D3DCE9B98D041FCE1E1 /* PhysicsEngine-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/PhysicsEngine";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		9594C354B7384C1A5CAEB721D7E781FB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11DD4160964B42224A09C8DF7F2A46E4 /* PhysicsEngine-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCDED57562654F060FDD66AEBD3FA3C2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A053C5440BE76C9B41CEE8301CC168A8 /* Pods-BubbleSaga-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		34FEDEA4C757CAE25903507212085984 /* Pods-BubbleSaga */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEE21A3E7118AAFF132F536374EEFD5C /* Build configuration list for PBXNativeTarget "Pods-BubbleSaga" */;
+			buildPhases = (
+				173A8D47A360DDE68BB4E2B3DB404D62 /* Sources */,
+				5B17536463D77EABCF31BA82DFF8F98A /* Frameworks */,
+				DCDED57562654F060FDD66AEBD3FA3C2 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1161867AC2C3C707DF2BC67B166B7214 /* PBXTargetDependency */,
+			);
+			name = "Pods-BubbleSaga";
+			productName = "Pods-BubbleSaga";
+			productReference = 8A8CE37D2B6533FA5D28F033E47B363D /* Pods_BubbleSaga.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		BC70CA98C4DD3E070706E06CB0CCADA1 /* PhysicsEngine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6C71DD5BDC6EBE1751395F986B0F1A5F /* Build configuration list for PBXNativeTarget "PhysicsEngine" */;
+			buildPhases = (
+				1B66B444B44FE18331631E1909182D73 /* Sources */,
+				FE82E83B6A6A6C88CE1F8FB2603E9102 /* Frameworks */,
+				9594C354B7384C1A5CAEB721D7E781FB /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PhysicsEngine;
+			productName = PhysicsEngine;
+			productReference = 196B45097D7BE6A700965556DB2BDB73 /* PhysicsEngine.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = E2749DCA3324FEA1D985957639B92275 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BC70CA98C4DD3E070706E06CB0CCADA1 /* PhysicsEngine */,
+				34FEDEA4C757CAE25903507212085984 /* Pods-BubbleSaga */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		173A8D47A360DDE68BB4E2B3DB404D62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DFE2E5D0B1862FC77BF606633D899571 /* Pods-BubbleSaga-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B66B444B44FE18331631E1909182D73 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C007F6FAA92EC0F0AB9DDAD421ADE67F /* CircleCollidable.swift in Sources */,
+				6B6BAE06319DCCFAC961B94BB9C376F6 /* Collidable.swift in Sources */,
+				BE847DA500D2F86ACD7EF835DB114549 /* GameObject.swift in Sources */,
+				C1D6C393449B04B915D6D67D784CDEE1 /* HorizontalCollidable.swift in Sources */,
+				ED4FA64172D294B4C1043A76498D462A /* Math.swift in Sources */,
+				FF7BE2257F0410BA8EE363C76866456B /* PhysicsEngine-dummy.m in Sources */,
+				770F5BEF92746460B23E341A7BDC9E3F /* Projectile.swift in Sources */,
+				C04D8DC01F668D3897189B8CDF10F59E /* VerticalCollidable.swift in Sources */,
+				E4CBCC1E25DC83E4941D68D9312D6FD4 /* World.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1161867AC2C3C707DF2BC67B166B7214 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PhysicsEngine;
+			target = BC70CA98C4DD3E070706E06CB0CCADA1 /* PhysicsEngine */;
+			targetProxy = FF77BDD096CF37C94673B58CB7B47FFD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		251FB055ADA6151E2E95EB0F3C61D9A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3460684E0EA87F0C002DC2B220C989F7 /* Pods-BubbleSaga.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-BubbleSaga/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BubbleSaga/Pods-BubbleSaga.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_BubbleSaga;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2F3F78365C3838230BA78AE5EFC859DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 842A07161D93A773FBC9582BBE03BC79 /* PhysicsEngine.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/PhysicsEngine/PhysicsEngine-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PhysicsEngine/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/PhysicsEngine/PhysicsEngine.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = PhysicsEngine;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A435E3C35B2666C25C53422D898980A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		D657CF5C2449CD37D556D4797E3DE97A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C9C846CB1378271EA00D42E118BDEF80 /* Pods-BubbleSaga.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-BubbleSaga/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BubbleSaga/Pods-BubbleSaga.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_BubbleSaga;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F2C4F47FC8AD76198661C5EFDE751899 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F8A617778BBC8C9555DA3A9E76A19F50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 842A07161D93A773FBC9582BBE03BC79 /* PhysicsEngine.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/PhysicsEngine/PhysicsEngine-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PhysicsEngine/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/PhysicsEngine/PhysicsEngine.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = PhysicsEngine;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A435E3C35B2666C25C53422D898980A7 /* Debug */,
+				F2C4F47FC8AD76198661C5EFDE751899 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6C71DD5BDC6EBE1751395F986B0F1A5F /* Build configuration list for PBXNativeTarget "PhysicsEngine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8A617778BBC8C9555DA3A9E76A19F50 /* Debug */,
+				2F3F78365C3838230BA78AE5EFC859DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEE21A3E7118AAFF132F536374EEFD5C /* Build configuration list for PBXNativeTarget "Pods-BubbleSaga" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				251FB055ADA6151E2E95EB0F3C61D9A5 /* Debug */,
+				D657CF5C2449CD37D556D4797E3DE97A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

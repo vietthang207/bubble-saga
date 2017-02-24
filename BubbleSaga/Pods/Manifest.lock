@@ -1,0 +1,24 @@
+PODS:
+  - PhysicsEngine (0.0.1)
+
+DEPENDENCIES:
+  - PhysicsEngine (from `https://vietthang207@bitbucket.org/cs3217/2017-ps4-a0126513n.git`, branch `pod`, tag `0.0.1`)
+
+EXTERNAL SOURCES:
+  PhysicsEngine:
+    :branch: pod
+    :git: https://vietthang207@bitbucket.org/cs3217/2017-ps4-a0126513n.git
+    :tag: 0.0.1
+
+CHECKOUT OPTIONS:
+  PhysicsEngine:
+    :commit: 79bb3a564afcc279fc7554e125486a8f2265ea1b
+    :git: https://vietthang207@bitbucket.org/cs3217/2017-ps4-a0126513n.git
+    :tag: 0.0.1
+
+SPEC CHECKSUMS:
+  PhysicsEngine: 093691c386868c48adf0d19a79ce5bdea708945b
+
+PODFILE CHECKSUM: abc8179e97d9a5c94e8ed5cd33eefd99bb66b561
+
+COCOAPODS: 1.2.0
