@@ -126,7 +126,7 @@ class BubbleGraph {
     }
     
     // Run bfs to find and delete all mid air bubble
-    func getAndDemoveMidAirBubbles() -> [Index] {
+    func getAndRemoveMidAirBubbles() -> [Index] {
         var connectedComponent = [Index]()
         var queue = Queue<Index>()
         var visited = Set<Index>()

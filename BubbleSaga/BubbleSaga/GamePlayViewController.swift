@@ -14,16 +14,16 @@ class GamePlayViewController: UIViewController {
     @IBOutlet var cannonArea: UIView!
     @IBOutlet var gameOverLine: UIView!
     
-    private var radius = CGFloat(1.0)
+    private var radius: CGFloat = 1.0
     
     // Controller to control projectile's MVC
-    private var projectileControllers = [ProjectileController]()
+    private var projectileControllers: [ProjectileController] = []
     
     // Coordinate where all projectile stared at
     private var origin = CGPoint(x: 1.0, y: 1.0)
     
     // Physics engine's world object to simulate
-    private var world: World?
+    private var world = World()
     
     // Collection of the controllers of all bubbles on the grid
     private var bubbleControllers = [[BubbleController]]()
@@ -126,27 +126,26 @@ class GamePlayViewController: UIViewController {
         }
         if let projectileController = projectileControllers.last {
             projectileController.physicalProjectile.setVelocity(velocity: velocity)
-            world?.addProjectile(projectileController.physicalProjectile)
+            world.addProjectile(projectileController.physicalProjectile)
             gameArea.addSubview(projectileController.view)
             prepareNewProjectile()
         }
     }
     
     private func runGameLoop() {
-        world = World()
         let ceiling = HorizontalCollidable(y: 0)
         let leftWall = VerticalCollidable(x: gameArea.frame.minX)
         let rightWall = VerticalCollidable(x: gameArea.frame.maxX)
-        world?.addBorder(ceiling)
-        world?.addBorder(leftWall)
-        world?.addBorder(rightWall)
+        world.addBorder(ceiling)
+        world.addBorder(leftWall)
+        world.addBorder(rightWall)
         
         _ = Timer.scheduledTimer(timeInterval: TimeInterval(Constant.TIME_STEP), target: self, selector: #selector(GamePlayViewController.gameLoop), userInfo: nil, repeats: true)
         
     }
     
     func gameLoop() {
-        let willCollide = world?.simulate(timeStep: Constant.TIME_STEP)
+        let willCollide = world.simulate(timeStep: Constant.TIME_STEP)
         for i in (0..<projectileControllers.count).reversed() {
             let projectileController = projectileControllers[i]
             let physicalProjectile = projectileController.physicalProjectile
@@ -159,7 +158,7 @@ class GamePlayViewController: UIViewController {
                 snapProjectile(projectileController, toIndex: index)
                 projectileController.view.removeFromSuperview()
                 projectileControllers.remove(at: i)
-                world?.removeProjectileAtIndex(i)
+                world.removeProjectileAtIndex(i)
             } else {
                 projectileController.updateState()
             }
@@ -170,12 +169,12 @@ class GamePlayViewController: UIViewController {
         setBubble(projectile, atIndex: toIndex)
         let center = Util.getCenterForBubbleAt(row: toIndex.row, col: toIndex.col, radius: radius)
         let newBubble = CircleCollidable(center: center, radius: radius)
-        world?.addBubbleAtIndex(toIndex, bubble: newBubble)
+        world.addBubbleAtIndex(toIndex, bubble: newBubble)
         graph.changeBubbleTypeAt(row: toIndex.row, col: toIndex.col, type: projectile.getType())
         let connectedComponent = graph.getAndDeleteConnectedComponentOfTheSameColorAt(row: toIndex.row, col: toIndex.col)
         if connectedComponent.count >= Constant.GROUP_SIZE_TO_EXPLODE {
             self.clearBubbleByIndexList(connectedComponent)
-            let midAirBubbles = self.graph.getAndDemoveMidAirBubbles()
+            let midAirBubbles = self.graph.getAndRemoveMidAirBubbles()
             self.clearBubbleByIndexList(midAirBubbles)
         }
     }
@@ -189,7 +188,7 @@ class GamePlayViewController: UIViewController {
     private func clearBubbleAtIndex(_ index: Index) {
         let row = index.row
         let col = index.col
-        self.world?.deleteBubbleAtIndex(index)
+        self.world.deleteBubbleAtIndex(index)
         
         UIView.animate(withDuration: Constant.ANIMATION_DUTATION_FADING, animations: {
             self.bubbleControllers[row][col].changeType(.empty)
