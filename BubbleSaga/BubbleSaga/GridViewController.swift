@@ -16,7 +16,7 @@ class GridViewController: UIViewController, UICollectionViewDataSource {
         super.init(coder: aDecoder)
     }
     
-    init(radius: CGFloat){
+    init(radius: CGFloat) {
         super.init(nibName: nil, bundle: nil)
         loadEmptyGrid(radius: radius)
     }
@@ -30,7 +30,7 @@ class GridViewController: UIViewController, UICollectionViewDataSource {
         for row in 0..<Constant.NUMB_ROWS {
             var bubbleInRow = [BubbleController]()
             var numberBubbles = Constant.NUMB_COLUMNS
-            if (row % 2 == 1) {
+            if row % 2 == 1 {
                 numberBubbles -= 1
             }
             
@@ -45,22 +45,22 @@ class GridViewController: UIViewController, UICollectionViewDataSource {
     func reset() {
         for row in 0..<Constant.NUMB_ROWS {
             var numberBubbles = Constant.NUMB_COLUMNS
-            if (row % 2 == 1) {
+            if row % 2 == 1 {
                 numberBubbles -= 1
             }
             
             for col in 0..<numberBubbles {
-                bubbleControllers[row][col].changeType(BubbleType.empty)
+                bubbleControllers[row][col].changeType(.empty)
             }
         }
     }
     
     private func createEmptyBubble(radius: CGFloat, row: Int, col: Int) -> BubbleController{
         let center = Util.getCenterForBubbleAt(row: row, col: col, radius: radius)
-        let bubbleModel = BubbleModel(type: BubbleType.empty,
+        let bubbleModel = BubbleModel(type: .empty,
                                       center: CGPoint(x: center.x, y: center.y),
                                       radius: radius)
-        let bubbleView = BubbleView(image: BubbleView.getImageForBubbleType(BubbleType.empty),
+        let bubbleView = BubbleView(image: BubbleView.getImageForBubbleType(.empty),
                                     center: CGPoint(x: center.x, y: center.y),
                                     radius: radius)
         bubbleView.alpha = CGFloat(Constant.ALPHA_FULL)
@@ -110,13 +110,12 @@ class GridViewController: UIViewController, UICollectionViewDataSource {
         var list = [Int32]()
         for row in 0..<Constant.NUMB_ROWS {
             var numberBubbles = Constant.NUMB_COLUMNS
-            if (row % 2 == 1) {
+            if row % 2 == 1 {
                 numberBubbles -= 1
             }
             
             for col in 0..<numberBubbles {
                 let bubbleType = bubbleControllers[row][col].getType()
-                //let bubbleType = BubbleType.red
                 list.append(Int32(bubbleType.rawValue))
             }
         }
@@ -129,7 +128,7 @@ class GridViewController: UIViewController, UICollectionViewDataSource {
         var counter = 0
         for row in 0..<Constant.NUMB_ROWS {
             var numBubbles = Constant.NUMB_COLUMNS
-            if (row % 2 == 1) {
+            if row % 2 == 1 {
                 numBubbles -= 1
             }
             for col in 0..<numBubbles {
@@ -145,7 +144,7 @@ class GridViewController: UIViewController, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if (section % 2 == 0) {
+        if section % 2 == 0 {
             return Constant.NUMB_COLUMNS
         }
         return Constant.NUMB_COLUMNS - 1

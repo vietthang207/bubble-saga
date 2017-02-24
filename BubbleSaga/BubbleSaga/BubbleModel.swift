@@ -15,7 +15,7 @@ class BubbleModel: NSObject {
     
     /// default constructor
     override init() {
-        type = BubbleType.empty
+        type = .empty
         center = CGPoint(x: 0, y: 0)
         radius = CGFloat(1)
     }

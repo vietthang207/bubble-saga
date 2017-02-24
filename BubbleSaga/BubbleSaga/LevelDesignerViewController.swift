@@ -51,12 +51,12 @@ class LevelDesignerViewController: UIViewController {
         gridViewController = GridViewController(radius: radius)
         grid.dataSource = gridViewController
         grid.register(UICollectionViewCell.self, forCellWithReuseIdentifier: Constant.REUSE_IDENTIFIER)
-        grid.backgroundColor = UIColor.clear
+        grid.backgroundColor = .clear
         grid.collectionViewLayout = BubbleCollectionViewFlowLayout(radius: radius)
         gameArea.addSubview(grid)
     }
     
-    private func addGestureRecognizersForGrid(){
+    private func addGestureRecognizersForGrid() {
         grid.isUserInteractionEnabled = true
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.handlePan))
@@ -72,7 +72,7 @@ class LevelDesignerViewController: UIViewController {
     }
     
     func handlePan(recognizer: UIPanGestureRecognizer) {
-        if (recognizer.state != .ended && recognizer.state != .failed) {
+        if recognizer.state != .ended && recognizer.state != .failed {
             let location = recognizer.location(in: grid)
             if let indexPath = grid.indexPathForItem(at: location) {
                 gridViewController.changeBubbleByIndexPath(indexPath, paletteState: paletteState)
@@ -100,11 +100,9 @@ class LevelDesignerViewController: UIViewController {
     
     private func loadGameLevelList() {
         let gameLevelListUrl = documentDirectory.appendingPathComponent(Constant.FILENAME_GAME_LEVEL_LIST)
-        if (FileManager.default.fileExists(atPath: gameLevelListUrl.path)) {
-            print(gameLevelListUrl)
+        if FileManager.default.fileExists(atPath: gameLevelListUrl.path) {
             let data = NSArray(contentsOfFile: gameLevelListUrl.path) as! [String]
             gameLevelList = data
-            print(data)
         }
     }
     @IBAction func bubbleSellected(_ sender: Any) {
@@ -113,8 +111,8 @@ class LevelDesignerViewController: UIViewController {
         var isDeactivation = false
         
         for button in paletteButtons {
-            if (button == bubbleSelected) {
-                if (button.alpha == Constant.ALPHA_HALF) {
+            if button == bubbleSelected {
+                if button.alpha == Constant.ALPHA_HALF {
                     button.alpha = Constant.ALPHA_FULL
                 } else {
                     isDeactivation = true
@@ -125,12 +123,12 @@ class LevelDesignerViewController: UIViewController {
             }
         }
         
-        if (isDeactivation) {
+        if isDeactivation {
             // deactivation by tapping on a button that has been already selected
             paletteState = PaletteState.noneSelected
         } else {
             // tapping on a button that has not been selected
-            switch (bubbleSelected.currentTitle!) {
+            switch bubbleSelected.currentTitle! {
             case Constant.BUTTON_NAME_BLUE:
                 paletteState = .blue
             case Constant.BUTTON_NAME_GREEN:
@@ -155,21 +153,17 @@ class LevelDesignerViewController: UIViewController {
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     @IBAction func resetPressed(_ sender: Any) {
         let alert = UIAlertController(title: Constant.ALERT_MSG_RESET,
                                       message: "",
-                                      preferredStyle: UIAlertControllerStyle.alert)
+                                      preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: Constant.BUTTON_YES,
-                                      style: UIAlertActionStyle.default,
-                                      handler: { action in self.reset() }))
+                                      style: .default,
+                                      handler: { _ in self.reset() }))
         
         alert.addAction(UIAlertAction(title: Constant.BUTTON_NO,
-                                      style: UIAlertActionStyle.cancel,
+                                      style: .cancel,
                                       handler: nil))
         present(alert, animated: true, completion: nil)
     }
@@ -177,6 +171,7 @@ class LevelDesignerViewController: UIViewController {
     private func reset() {
         gridViewController.reset()
     }
+
     @IBAction func savePressed(_ sender: Any) {
         if levelName == nil {
             askNameAndSaveWithMessage("")
@@ -189,16 +184,16 @@ class LevelDesignerViewController: UIViewController {
         
         let alert = UIAlertController(title: Constant.ALERT_MSG_ASK_NAME,
                                       message: message,
-                                      preferredStyle: UIAlertControllerStyle.alert)
+                                      preferredStyle: .alert)
         
         alert.addTextField(configurationHandler: self.configurationHandler)
         
         alert.addAction(UIAlertAction(title: Constant.BUTTON_SAVE,
-                                      style: UIAlertActionStyle.default,
-                                      handler: { action in self.processName((alert.textFields?[0].text)!) }))
+                                      style: .default,
+                                      handler: { _ in self.processName((alert.textFields?[0].text)!) }))
         
         alert.addAction(UIAlertAction(title: Constant.BUTTON_CANCEL,
-                                      style: UIAlertActionStyle.cancel,
+                                      style: .cancel,
                                       handler: nil))
         
         present(alert, animated: true, completion: nil)
@@ -211,7 +206,7 @@ class LevelDesignerViewController: UIViewController {
     private func processName(_ name: String) {
         let trimmedName = name.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
-        if (trimmedName == "") {
+        if trimmedName == "" {
             askNameAndSaveWithMessage(Constant.ALERT_MSG_INVALID_NAME)
         } else if gameLevelList.contains(name) {
             handleDuplicatedName(trimmedName)
@@ -223,15 +218,15 @@ class LevelDesignerViewController: UIViewController {
     private func handleDuplicatedName(_ name: String) {
         let alert = UIAlertController(title: Constant.ALERT_MSG_DUPLICATED_NAME,
                                       message: "",
-                                      preferredStyle: UIAlertControllerStyle.alert)
+                                      preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: Constant.BUTTON_OVERWRITE,
-                                      style: UIAlertActionStyle.default,
-                                      handler: { action in self.saveLevelWithName(name) }))
+                                      style: .default,
+                                      handler: { _ in self.saveLevelWithName(name) }))
         
         alert.addAction(UIAlertAction(title: Constant.BUTTON_NEWNAME,
-                                      style: UIAlertActionStyle.cancel,
-                                      handler: { action in self.askNameAndSaveWithMessage("") }))
+                                      style: .cancel,
+                                      handler: { _ in self.askNameAndSaveWithMessage("") }))
         
         present(alert, animated: true, completion: nil)
     }
@@ -240,18 +235,18 @@ class LevelDesignerViewController: UIViewController {
     private func saveExistingLevelWithMessage(_ message: String) {
         let alert = UIAlertController(title: Constant.ALERT_MSG_OVERWRITE,
                                       message: message,
-                                      preferredStyle: UIAlertControllerStyle.alert)
+                                      preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: Constant.BUTTON_OVERWRITE,
-                                      style: UIAlertActionStyle.default,
-                                      handler: { action in self.saveLevelWithName(self.levelName!) }))
+                                      style: .default,
+                                      handler: { _ in self.saveLevelWithName(self.levelName!) }))
         
         alert.addAction(UIAlertAction(title: Constant.BUTTON_SAVE_AS,
-                                      style: UIAlertActionStyle.default,
-                                      handler: { action in self.askNameAndSaveWithMessage("") }))
+                                      style: .default,
+                                      handler: { _ in self.askNameAndSaveWithMessage("") }))
         
         alert.addAction(UIAlertAction(title: Constant.BUTTON_CANCEL,
-                                      style: UIAlertActionStyle.cancel,
+                                      style: .cancel,
                                       handler: nil))
         
         present(alert, animated: true, completion: nil)
@@ -277,8 +272,7 @@ class LevelDesignerViewController: UIViewController {
         let archiver = NSKeyedArchiver(forWritingWith: data)
         archiver.encode(gameLevel, forKey: Constant.KEY_GAME_LEVEL)
         archiver.finishEncoding()
-        let success = data.write(to: fileURL, atomically: true)
-        print(success)
+        _ = data.write(to: fileURL, atomically: true)
     }
     
     private func writeGameLevelList() {
@@ -290,11 +284,11 @@ class LevelDesignerViewController: UIViewController {
     private func showSaveSuccessful() {
         let alert = UIAlertController(title: Constant.ALERT_MSG_SAVED + levelName!,
                                       message: "",
-                                      preferredStyle: UIAlertControllerStyle.alert)
+                                      preferredStyle: .alert)
         present(alert, animated: true, completion: nil)
         
         let deadline = DispatchTime.now() + Constant.POPUP_DELAY
-        DispatchQueue.main.asyncAfter(deadline: deadline){
+        DispatchQueue.main.asyncAfter(deadline: deadline) {
             alert.dismiss(animated: true, completion: nil)
         }
     }
@@ -311,13 +305,13 @@ class LevelDesignerViewController: UIViewController {
     private func showGameLevelOptionMenu() {
         let alert = UIAlertController(title: Constant.ALERT_MSG_LOAD,
                                       message: "",
-                                      preferredStyle: UIAlertControllerStyle.actionSheet)
+                                      preferredStyle: .actionSheet)
         
         
         for gameLevel in gameLevelList {
             alert.addAction(UIAlertAction(title: gameLevel,
-                                          style: UIAlertActionStyle.default,
-                                          handler: { action in self.loadExistingLevelWithName(gameLevel) }))
+                                          style: .default,
+                                          handler: { _ in self.loadExistingLevelWithName(gameLevel) }))
         }
         
         alert.popoverPresentationController?.sourceView = self.view
@@ -329,7 +323,7 @@ class LevelDesignerViewController: UIViewController {
         let fileName = name + Constant.FILE_EXTENSION_PLIST
         let fileURL = documentDirectory.appendingPathComponent(fileName)
         
-        if (FileManager.default.fileExists(atPath: fileURL.path)) {
+        if FileManager.default.fileExists(atPath: fileURL.path) {
             let data = try? Data(contentsOf: fileURL)
             let unarchiver = NSKeyedUnarchiver(forReadingWith: data!)
             let gameLevel = unarchiver.decodeObject(forKey: Constant.KEY_GAME_LEVEL) as! GameLevel
@@ -345,7 +339,7 @@ class LevelDesignerViewController: UIViewController {
         present(alert, animated: true, completion: nil)
         
         let deadline = DispatchTime.now() + Constant.POPUP_DELAY
-        DispatchQueue.main.asyncAfter(deadline: deadline){
+        DispatchQueue.main.asyncAfter(deadline: deadline) {
             alert.dismiss(animated: true, completion: nil)
         }
     }

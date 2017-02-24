@@ -81,7 +81,7 @@ class BubbleGraph {
     }
     
     func clearBubbleAt(row: Int, col: Int) {
-        nodeList[Index(row: row, col: col)]?.type = BubbleType.empty
+        nodeList[Index(row: row, col: col)]?.type = .empty
     }
     
     // Run bfs to find connected component of the same color
@@ -101,16 +101,16 @@ class BubbleGraph {
             let currentIndex = try! queue.dequeue()
             connectedComponent.append(currentIndex)
             let neighbors = getAdjacentNodesOfNodeAt(index: currentIndex)
-            for n in neighbors {
-                if visited.contains(n) {
+            for neighbor in neighbors {
+                if visited.contains(neighbor) {
                     continue
                 }
                 
-                if nodeList[n]?.type != type {
+                if nodeList[neighbor]?.type != type {
                     continue
                 }
-                visited.insert(n)
-                queue.enqueue(n)
+                visited.insert(neighbor)
+                queue.enqueue(neighbor)
             }
         }
         
@@ -134,7 +134,7 @@ class BubbleGraph {
         for col in 0..<numCol {
             let index = Index(row: 0, col: col)
             let type = nodeList[index]?.type
-            if type != BubbleType.empty {
+            if type != .empty {
                 visited.insert(index)
                 queue.enqueue(index)
             }
@@ -144,23 +144,23 @@ class BubbleGraph {
             let currentIndex = try! queue.dequeue()
             connectedComponent.append(currentIndex)
             let neighbors = getAdjacentNodesOfNodeAt(index: currentIndex)
-            for n in neighbors {
-                if visited.contains(n) {
+            for neighbor in neighbors {
+                if visited.contains(neighbor) {
                     continue
                 }
-                if nodeList[n]?.type == BubbleType.empty {
+                if nodeList[neighbor]?.type == .empty {
                     continue
                 }
-                visited.insert(n)
-                queue.enqueue(n)
+                visited.insert(neighbor)
+                queue.enqueue(neighbor)
             }
         }
         
         var result = [Index]()
-        for n in nodeList.keys {
-            if !visited.contains(n) && nodeList[n]?.type != BubbleType.empty {
-                result.append(n)
-                clearBubbleAt(row: n.row, col: n.col)
+        for neighbor in nodeList.keys {
+            if !visited.contains(neighbor) && nodeList[neighbor]?.type != .empty {
+                result.append(neighbor)
+                clearBubbleAt(row: neighbor.row, col: neighbor.col)
             }
         }
         
@@ -175,6 +175,6 @@ struct Node {
     
     init(index: Index) {
         self.index = index
-        type = BubbleType.empty
+        type = .empty
     }
 }

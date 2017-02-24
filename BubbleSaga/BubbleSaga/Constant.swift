@@ -39,6 +39,8 @@ struct Constant {
     static let ALPHA_HALF = CGFloat(0.5)
     static let ALPHA_FULL = CGFloat(1.0)
     
+    static let IMAGE_RADIUS = CGFloat(100)
+
     static let NUMB_BUBBLE_COLOUR = 4
     static let NUMB_BUBBLE_TYPE = 8
     

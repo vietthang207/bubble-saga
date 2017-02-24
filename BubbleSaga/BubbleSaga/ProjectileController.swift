@@ -23,7 +23,6 @@ class ProjectileController: BubbleController {
     }
     
     func updateState() {
-        //self.bubbleModel.updateViewWithCenter(physicalProjectile.getCenter(), newRadius: physicalProjectile.getRadius())
         self.changeViewWithCenter(physicalProjectile.getCenter(), newRadius: physicalProjectile.getRadius())
     }
     

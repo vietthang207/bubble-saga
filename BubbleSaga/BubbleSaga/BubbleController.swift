@@ -21,24 +21,16 @@ class BubbleController: UIViewController {
         self.bubbleModel = model
         super.init(nibName: nil, bundle: nil)
         self.view = view
-        if (bubbleModel.getBubbleType() == BubbleType.empty) {
-            self.view.alpha = Constant.ALPHA_HALF
-        } else {
-            self.view.alpha = Constant.ALPHA_FULL
-        }
+        self.view.alpha = (bubbleModel.getBubbleType() == .empty) ? Constant.ALPHA_HALF : Constant.ALPHA_FULL
     }
     
-    func updateBubbleModel(_ newBubbleModel: BubbleModel) {
-        self.bubbleModel = newBubbleModel
-        self.view = BubbleView(image: BubbleView.getImageForBubbleType(newBubbleModel.getBubbleType()),
-                               center: newBubbleModel.getBubbleCenter(),
-                               radius: newBubbleModel.getBubbleRadius())
-        if (bubbleModel.getBubbleType() == BubbleType.empty) {
-            self.view.alpha = Constant.ALPHA_HALF
-        } else {
-            self.view.alpha = Constant.ALPHA_FULL
-        }
-    }
+    // func updateBubbleModel(_ newBubbleModel: BubbleModel) {
+    //     self.bubbleModel = newBubbleModel
+    //     self.view = BubbleView(image: BubbleView.getImageForBubbleType(newBubbleModel.getBubbleType()),
+    //                            center: newBubbleModel.getBubbleCenter(),
+    //                            radius: newBubbleModel.getBubbleRadius())
+    //     self.view.alpha = (bubbleModel.getBubbleType() == .empty) ? Constant.ALPHA_HALF : Constant.ALPHA_FULL
+    // }
     
     func getType() -> BubbleType {
         return bubbleModel.getBubbleType()
@@ -54,11 +46,7 @@ class BubbleController: UIViewController {
         let bubbleView = self.view as! BubbleView
         bubbleView.setNewImage(BubbleView.getImageForBubbleType(newType))
         self.view = bubbleView
-        if (bubbleModel.getBubbleType() == BubbleType.empty) {
-            self.view.alpha = Constant.ALPHA_HALF
-        } else {
-            self.view.alpha = Constant.ALPHA_FULL
-        }
+        self.view.alpha = (bubbleModel.getBubbleType() == .empty) ? Constant.ALPHA_HALF : Constant.ALPHA_FULL
     }
     
     func cycleType() {

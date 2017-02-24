@@ -64,7 +64,7 @@ class GamePlayViewController: UIViewController {
     }
     
     private func loadGameOverLine() {
-        gameOverLine.backgroundColor = UIColor.red
+        gameOverLine.backgroundColor = .red
         gameArea.addSubview(gameOverLine)
     }
     
@@ -73,7 +73,7 @@ class GamePlayViewController: UIViewController {
     }
     
     private func loadCannonArea() {
-        cannonArea.backgroundColor = UIColor.clear
+        cannonArea.backgroundColor = .clear
         gameArea.addSubview(cannonArea)
     }
     
@@ -107,11 +107,11 @@ class GamePlayViewController: UIViewController {
     }
     
     func handlePan(recognizer: UIPanGestureRecognizer) {
-        if (recognizer.state != .ended && recognizer.state != .failed) {
+        if recognizer.state != .ended && recognizer.state != .failed {
             //rotate the cannon
             let location = recognizer.location(in: gameArea)
             fireAt(location: location)
-        } else if (recognizer.state == .ended && recognizer.state != .failed) {
+        } else if recognizer.state == .ended && recognizer.state != .failed {
             let location = recognizer.location(in: gameArea)
             fireAt(location: location)
         }
@@ -126,7 +126,6 @@ class GamePlayViewController: UIViewController {
         let aimingVector = location.subtract(origin)
         let unitVector = CGVector(dx: aimingVector.dx/aimingVector.length(), dy: aimingVector.dy/aimingVector.length())
         let velocity = unitVector.dot(scalar: Constant.SPEED)
-        //print(velocity)
         if velocity.dy > 0 {
             return
         }
@@ -134,9 +133,7 @@ class GamePlayViewController: UIViewController {
             projectileController.physicalProjectile.setVelocity(velocity: velocity)
             world?.addProjectile(projectileController.physicalProjectile)
             gameArea.addSubview(projectileController.view)
-            //print(projectileController.physicalProjectile.getVelocity())
             prepareNewProjectile()
-            //print(projectileController.physicalProjectile.getVelocity())
         }
     }
     
@@ -155,16 +152,10 @@ class GamePlayViewController: UIViewController {
     
     func gameLoop() {
         let willCollide = world?.simulate(timeStep: Constant.TIME_STEP)
-        //        print("count")
-        //        print(projectileControllers.count)
         for i in (0..<projectileControllers.count).reversed() {
             let projectileController = projectileControllers[i]
             let physicalProjectile = projectileController.physicalProjectile
             let y = physicalProjectile.getCenter().y
-            //            print(i)
-            //            print(physicalProjectile.getVelocity())
-            //print(physicalProjectile.getCenter())
-            //print(projectileController.getCenter())
             if physicalProjectile.isStopped() || y > origin.y {
                 let index = getClosestEmptyCellTo(point: (physicalProjectile.getCenter()))
                 if index.row == Constant.NUMB_ROWS - 1 {
@@ -172,15 +163,10 @@ class GamePlayViewController: UIViewController {
                 }
                 snapProjectile(projectileController, toIndex: index)
                 projectileController.view.removeFromSuperview()
-                //print("at")
-                //print(i)
                 projectileControllers.remove(at: i)
                 world?.removeProjectileAtIndex(i)
             } else {
                 projectileController.updateState()
-                //print("in")
-                //print(i)
-                //projectileController.bubbleModel.updateViewWithCenter(physicalProjectile.getCenter(), newRadius: physicalProjectile.getRadius())
             }
         }
     }
@@ -211,7 +197,7 @@ class GamePlayViewController: UIViewController {
         self.world?.deleteBubbleAtIndex(index)
         
         UIView.animate(withDuration: Constant.ANIMATION_DUTATION_FADING, animations: {
-            self.bubbleControllers[row][col].changeType(BubbleType.empty)
+            self.bubbleControllers[row][col].changeType(.empty)
         })
         
     }
@@ -219,10 +205,10 @@ class GamePlayViewController: UIViewController {
     private func showGameOverPopup() {
         let alert = UIAlertController(title: Constant.ALERT_MSG_GAME_OVER,
                                       message: "",
-                                      preferredStyle: UIAlertControllerStyle.alert)
+                                      preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: Constant.BUTTON_OK,
-                                      style: UIAlertActionStyle.default,
+                                      style: .default,
                                       handler: nil ))
         
         present(alert, animated: true, completion: nil)
@@ -233,7 +219,7 @@ class GamePlayViewController: UIViewController {
         for row in 0..<Constant.NUMB_ROWS {
             var bubbleInRow = [BubbleController]()
             var numberBubbles = Constant.NUMB_COLUMNS
-            if (row % 2 == 1) {
+            if row % 2 == 1 {
                 numberBubbles -= 1
             }
             
@@ -247,10 +233,10 @@ class GamePlayViewController: UIViewController {
     
     private func createEmptyBubble(radius: CGFloat, row: Int, col: Int) -> BubbleController{
         let center = Util.getCenterForBubbleAt(row: row, col: col, radius: radius)
-        let bubbleModel = BubbleModel(type: BubbleType.empty,
+        let bubbleModel = BubbleModel(type: .empty,
                                       center: CGPoint(x: center.x, y: center.y),
                                       radius: radius)
-        let bubbleView = BubbleView(image: BubbleView.getImageForBubbleType(BubbleType.empty),
+        let bubbleView = BubbleView(image: BubbleView.getImageForBubbleType(.empty),
                                     center: CGPoint(x: center.x, y: center.y),
                                     radius: radius)
         bubbleView.alpha = CGFloat(Constant.ALPHA_FULL)
@@ -265,17 +251,17 @@ class GamePlayViewController: UIViewController {
         var minimum = Constant.INFINITY_FLOAT
         for row in 0..<Constant.NUMB_ROWS {
             var numberBubbles = Constant.NUMB_COLUMNS
-            if (row % 2 == 1) {
+            if row % 2 == 1 {
                 numberBubbles -= 1
             }
             for col in 0..<numberBubbles {
                 let type = bubbleControllers[row][col].getType()
-                if type != BubbleType.empty {
+                guard type == .empty else {
                     continue
                 }
                 let center = bubbleControllers[row][col].getCenter()
                 let dist = point.subtract(center).length()
-                if (dist < minimum) {
+                if dist < minimum {
                     minimum = dist
                     result = Index(row: row, col: col)
                 }
