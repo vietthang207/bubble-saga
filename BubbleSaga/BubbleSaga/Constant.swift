@@ -16,12 +16,20 @@ struct Constant {
     static let IMAGE_NAME_BUBBLE_ORANGE = "bubble-orange.png"
     static let IMAGE_NAME_BUBBLE_RED = "bubble-red.png"
     static let IMAGE_NAME_ERASER = "erase.png"
+    static let IMAGE_NAME_BUBBLE_BOMB = "bubble-bomb.png"
+    static let IMAGE_NAME_BUBBLE_INDESTRUCTIBLE = "bubble-indestructible.png"
+    static let IMAGE_NAME_BUBBLE_LIGHTNING = "bubble-lightning.png"
+    static let IMAGE_NAME_BUBBLE_STAR = "bubble-star.png"
     
     static let BUTTON_NAME_BLUE = "blue"
     static let BUTTON_NAME_GREEN = "green"
     static let BUTTON_NAME_ORANGE = "orange"
     static let BUTTON_NAME_RED = "red"
     static let BUTTON_NAME_ERASE = "erase"
+    static let BUTTON_NAME_BOMB = "bomb"
+    static let BUTTON_NAME_INDESTRUCTIBLE = "indestructible"
+    static let BUTTON_NAME_LIGHTNING = "lightning"
+    static let BUTTON_NAME_STAR = "star"
     
     static let REUSE_IDENTIFIER = "BubbleCell"
     
@@ -31,7 +39,8 @@ struct Constant {
     static let ALPHA_HALF = CGFloat(0.5)
     static let ALPHA_FULL = CGFloat(1.0)
     
-    static let NUMB_BUBBLE_TYPE = 4
+    static let NUMB_BUBBLE_COLOUR = 4
+    static let NUMB_BUBBLE_TYPE = 8
     
     static let ALERT_MSG_RESET = "You are about to reset the level, are you sure?"
     static let ALERT_MSG_OVERWRITE = "This will overwrite current game level, are you sure?"
@@ -80,12 +89,16 @@ enum BubbleType: Int {
     case green
     case orange
     case red
+    case bomb
+    case indestructible
+    case lightning
+    case star
     
     func nextType() -> BubbleType {
         if self == .empty {
             return .empty
         }
-        return BubbleType(rawValue: ((self.rawValue + 1) % Constant.NUMB_BUBBLE_TYPE))!
+        return BubbleType(rawValue: ((self.rawValue + 1) % Constant.NUMB_BUBBLE_COLOUR))!
     }
 }
 
@@ -96,4 +109,8 @@ enum PaletteState {
     case green
     case red
     case erase
+    case bomb
+    case indestructible
+    case lightning
+    case star
 }

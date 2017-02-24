@@ -20,18 +20,219 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCC-qQ-g4L">
+                                <rect key="frame" x="361" y="400" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="LevelDesigner"/>
+                                <connections>
+                                    <segue destination="ZTQ-g2-l4V" kind="show" id="XzE-v7-3QB"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="tuw-22-WYW"/>
+                    <connections>
+                        <outlet property="levelDesignButton" destination="xCC-qQ-g4L" id="LEZ-3t-sXx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="852" y="758"/>
         </scene>
+        <!--Level Designer View Controller-->
+        <scene sceneID="yyi-2H-axi">
+            <objects>
+                <viewController id="ZTQ-g2-l4V" customClass="LevelDesignerViewController" customModule="BubbleSaga" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="goW-by-C89"/>
+                        <viewControllerLayoutGuide type="bottom" id="YKG-xW-gBc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PJg-tN-eMR">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Txi-qY-18I">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2m5-qD-hjT">
+                                        <rect key="frame" x="0.0" y="0.0" width="768" height="658"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OZu-E8-GMO">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BubbleCell" id="17u-ew-OZN">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </view>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xcS-Sg-gai">
+                                        <rect key="frame" x="0.0" y="868" width="768" height="112"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XIX-ND-oBK">
+                                                <rect key="frame" x="30" y="32" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="blue" backgroundImage="bubble-blue">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="bubbleSellected:" destination="ZTQ-g2-l4V" eventType="touchUpInside" id="1rS-T6-V28"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqY-TW-ne3">
+                                                <rect key="frame" x="110" y="32" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="green" backgroundImage="bubble-green">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="bubbleSellected:" destination="ZTQ-g2-l4V" eventType="touchUpInside" id="1hW-Pk-K4L"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fPU-HT-oxL">
+                                                <rect key="frame" x="194" y="32" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="orange" backgroundImage="bubble-orange">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="bubbleSellected:" destination="ZTQ-g2-l4V" eventType="touchUpInside" id="LMj-n1-R0J"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3G6-vs-g2j">
+                                                <rect key="frame" x="280" y="32" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="red" backgroundImage="bubble-red">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="bubbleSellected:" destination="ZTQ-g2-l4V" eventType="touchUpInside" id="zb1-mL-J5j"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7d-YO-O4c">
+                                                <rect key="frame" x="359" y="32" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="bomb" backgroundImage="bubble-bomb">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="bubbleSellected:" destination="ZTQ-g2-l4V" eventType="touchUpInside" id="tPO-DV-9il"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYq-zI-ogH">
+                                                <rect key="frame" x="430" y="32" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="indestructible" backgroundImage="bubble-indestructible">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="bubbleSellected:" destination="ZTQ-g2-l4V" eventType="touchUpInside" id="L69-85-Qge"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPM-GN-vKd">
+                                                <rect key="frame" x="512" y="32" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="lightning" backgroundImage="bubble-lightning">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="bubbleSellected:" destination="ZTQ-g2-l4V" eventType="touchUpInside" id="Wt8-Nb-Vhb"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YMv-Yq-N2f">
+                                                <rect key="frame" x="594" y="32" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="star" backgroundImage="bubble-star">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="bubbleSellected:" destination="ZTQ-g2-l4V" eventType="touchUpInside" id="U11-Wn-wMR"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p4D-IA-J2r">
+                                                <rect key="frame" x="674" y="32" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="erase" backgroundImage="erase">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="bubbleSellected:" destination="ZTQ-g2-l4V" eventType="touchUpInside" id="HOC-s0-ldd"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DI8-xU-RLv">
+                                <rect key="frame" x="20" y="988" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="savePressed:" destination="ZTQ-g2-l4V" eventType="touchUpInside" id="Nsl-3g-0uV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRz-QA-GUG">
+                                <rect key="frame" x="361" y="988" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="PLAY"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fc-LZ-90h">
+                                <rect key="frame" x="680" y="988" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Reset"/>
+                                <connections>
+                                    <action selector="resetPressed:" destination="ZTQ-g2-l4V" eventType="touchUpInside" id="tDM-G9-EGn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uui-i1-8dt">
+                                <rect key="frame" x="98" y="988" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Load"/>
+                                <connections>
+                                    <action selector="loadPressed:" destination="ZTQ-g2-l4V" eventType="touchUpInside" id="1Bf-pH-Jba"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="gameArea" destination="Txi-qY-18I" id="h2A-6S-16G"/>
+                        <outlet property="grid" destination="2m5-qD-hjT" id="I3w-fr-fpn"/>
+                        <outlet property="paletteArea" destination="xcS-Sg-gai" id="ZN8-fN-3dk"/>
+                        <outletCollection property="paletteButtons" destination="yqY-TW-ne3" collectionClass="NSMutableArray" id="Ad9-Ql-nI0"/>
+                        <outletCollection property="paletteButtons" destination="3G6-vs-g2j" collectionClass="NSMutableArray" id="38r-VN-y8I"/>
+                        <outletCollection property="paletteButtons" destination="YMv-Yq-N2f" collectionClass="NSMutableArray" id="C1j-hw-mxk"/>
+                        <outletCollection property="paletteButtons" destination="xPM-GN-vKd" collectionClass="NSMutableArray" id="Kvk-6A-nIl"/>
+                        <outletCollection property="paletteButtons" destination="q7d-YO-O4c" collectionClass="NSMutableArray" id="j6Y-ZM-Xaq"/>
+                        <outletCollection property="paletteButtons" destination="p4D-IA-J2r" collectionClass="NSMutableArray" id="D2E-Em-4MJ"/>
+                        <outletCollection property="paletteButtons" destination="fPU-HT-oxL" collectionClass="NSMutableArray" id="vg5-zB-Cdd"/>
+                        <outletCollection property="paletteButtons" destination="vYq-zI-ogH" collectionClass="NSMutableArray" id="qzj-fs-zyz"/>
+                        <outletCollection property="paletteButtons" destination="XIX-ND-oBK" collectionClass="NSMutableArray" id="WNA-RT-pvn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1aH-fc-B1d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1513.28125" y="757.6171875"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Qhk-cQ-jdX">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="K6q-9i-zgY" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="K6q-9i-zgY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pqn-Us-WrQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -47,4 +248,15 @@
             <point key="canvasLocation" x="118.75" y="757.6171875"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bubble-blue" width="168" height="168"/>
+        <image name="bubble-bomb" width="168" height="168"/>
+        <image name="bubble-green" width="168" height="168"/>
+        <image name="bubble-indestructible" width="168" height="168"/>
+        <image name="bubble-lightning" width="168" height="168"/>
+        <image name="bubble-orange" width="168" height="168"/>
+        <image name="bubble-red" width="168" height="168"/>
+        <image name="bubble-star" width="168" height="168"/>
+        <image name="erase" width="168" height="168"/>
+    </resources>
 </document>

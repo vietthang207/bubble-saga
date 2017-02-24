@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet var levelDesignButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()

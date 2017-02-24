@@ -28,14 +28,22 @@ class BubbleView: UIImageView {
     
     static func getImageForBubbleType(_ type: BubbleType) -> UIImage {
         switch (type) {
-        case BubbleType.blue:
+        case .blue:
             return UIImage(named: Constant.IMAGE_NAME_BUBBLE_BLUE)!
-        case BubbleType.green:
+        case .green:
             return UIImage(named: Constant.IMAGE_NAME_BUBBLE_GREEN)!
-        case BubbleType.orange:
+        case .orange:
             return UIImage(named: Constant.IMAGE_NAME_BUBBLE_ORANGE)!
-        case BubbleType.red:
+        case .red:
             return UIImage(named: Constant.IMAGE_NAME_BUBBLE_RED)!
+        case .bomb:
+            return UIImage(named: Constant.IMAGE_NAME_BUBBLE_BOMB)!
+        case .indestructible:
+            return UIImage(named: Constant.IMAGE_NAME_BUBBLE_INDESTRUCTIBLE)!
+        case .lightning:
+            return UIImage(named: Constant.IMAGE_NAME_BUBBLE_LIGHTNING)!
+        case .star:
+            return UIImage(named: Constant.IMAGE_NAME_BUBBLE_STAR)!
         case BubbleType.empty:
             return drawCicle()
         }
@@ -52,7 +60,7 @@ class BubbleView: UIImageView {
         
         let circleLayer = CAShapeLayer()
         circleLayer.path = circlePath.cgPath
-        circleLayer.fillColor = UIColor.lightGray.cgColor
+        circleLayer.fillColor = UIColor.clear.cgColor
         circleLayer.strokeColor = UIColor.black.cgColor
         circleLayer.lineWidth = 0.0
         
