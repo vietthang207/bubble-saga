@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol Collidable {
+public protocol Collidable {
     
     /**
      Detect whether a projectile will collide with this collidable object.

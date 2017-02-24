@@ -8,15 +8,15 @@
 
 import UIKit
 
-class HorizontalCollidable: GameObject, Collidable {
+public class HorizontalCollidable: Collidable {
     
     private let y: CGFloat
     
-    init(y: CGFloat) {
+    public init(y: CGFloat) {
         self.y = y
     }
     
-    func willCollideWith(projectile: Projectile) -> Bool {
+    public func willCollideWith(projectile: Projectile) -> Bool {
         if projectile.getCenter().y - projectile.getRadius() <= y {
             projectile.stop()
             return true

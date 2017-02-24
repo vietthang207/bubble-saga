@@ -8,24 +8,21 @@
 
 import UIKit
 
-class World {
+public class World {
     
     private var projectiles: [Projectile]
     private var borders: [Collidable]
     private var bubbles: [Index: CircleCollidable]
     
-    init() {
+    public init() {
         projectiles = [Projectile]()
         borders = [Collidable]()
         bubbles = [Index: CircleCollidable]()
     }
     
-    func simulate(timeStep: CGFloat) -> Bool {
-//        print("proj count")
-//        print(projectiles.count)
+    public func simulate(timeStep: CGFloat) -> Bool {
         var willCollide = false
         outer: for projectile in projectiles {
-//            print(projectile.getVelocity())
             projectile.advance(timeStep: timeStep)
             for (_, b) in bubbles {
                 if b.willCollideWith(projectile: projectile) {
@@ -51,42 +48,46 @@ class World {
         return willCollide
     }
     
-    func getProjectiles() -> [Projectile] {
+    public func getProjectiles() -> [Projectile] {
         return projectiles
     }
     
-    func addProjectile(_ projectile: Projectile) {
+    public func addProjectile(_ projectile: Projectile) {
         projectiles.append(projectile)
-        //print(projectiles.last?.getVelocity())
     }
     
-    func removeProjectileAtIndex(_ index: Int) {
+    public func removeProjectileAtIndex(_ index: Int) {
         projectiles.remove(at: index)
     }
     
-    func addBorder(_ border: Collidable) {
+    public func addBorder(_ border: Collidable) {
         borders.append(border)
     }
     
-    func deleteBubbleAtIndex(_ index: Index) {
+    public func deleteBubbleAtIndex(_ index: Index) {
         bubbles[index] = nil
     }
     
-    func addBubbleAtIndex(_ index: Index, bubble: CircleCollidable) {
+    public func addBubbleAtIndex(_ index: Index, bubble: CircleCollidable) {
         bubbles[index] = bubble
     }
     
 }
 
-struct Index: Hashable {
-    var row: Int
-    var col: Int
+public struct Index: Hashable {
+    public var row: Int
+    public var col: Int
     
-    var hashValue: Int {
+    public init(row: Int, col: Int) {
+        self.row = row
+        self.col = col
+    }
+    
+    public var hashValue: Int {
         return row.hashValue ^ col.hashValue
     }
     
-    static func ==(lhs: Index, rhs: Index) -> Bool {
+    public static func ==(lhs: Index, rhs: Index) -> Bool {
         return lhs.row == rhs.row && lhs.col == rhs.col
     }
     

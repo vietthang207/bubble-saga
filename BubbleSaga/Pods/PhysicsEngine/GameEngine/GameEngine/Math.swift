@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension CGVector {
+public extension CGVector {
     func dot(scalar: CGFloat) -> CGVector {
         return CGVector(dx: self.dx * scalar, dy: self.dy * scalar)
     }
@@ -23,7 +23,7 @@ extension CGVector {
     
 }
 
-extension CGPoint {
+public extension CGPoint {
     func translate(vector: CGVector) -> CGPoint {
         return CGPoint(x: self.x + vector.dx, y: self.y + vector.dy)
     }

@@ -8,15 +8,15 @@
 
 import UIKit
 
-class VerticalCollidable: GameObject, Collidable {
+public class VerticalCollidable: Collidable {
     
     private let x: CGFloat
     
-    init(x: CGFloat) {
+    public init(x: CGFloat) {
         self.x = x
     }
     
-    func willCollideWith(projectile: Projectile) -> Bool {
+    public func willCollideWith(projectile: Projectile) -> Bool {
         let center = projectile.getCenter()
         let radius = projectile.getRadius()
         let vx = projectile.getVelocity().dx

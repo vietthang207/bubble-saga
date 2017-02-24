@@ -12,13 +12,13 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   PhysicsEngine:
-    :commit: 79bb3a564afcc279fc7554e125486a8f2265ea1b
+    :commit: 9429807e04bca8f7399fc107cd1f5d5ced0ceae1
     :git: https://vietthang207@bitbucket.org/cs3217/2017-ps4-a0126513n.git
     :tag: 0.0.1
 
 SPEC CHECKSUMS:
   PhysicsEngine: 093691c386868c48adf0d19a79ce5bdea708945b
 
-PODFILE CHECKSUM: abc8179e97d9a5c94e8ed5cd33eefd99bb66b561
+PODFILE CHECKSUM: 3087ef1f41c1874fb4ccac654c63e5f7f95a6f8c
 
 COCOAPODS: 1.2.0

@@ -8,17 +8,17 @@
 
 import UIKit
 
-class CircleCollidable: GameObject, Collidable {
+public class CircleCollidable: Collidable {
     
     private let center: CGPoint
     private let radius: CGFloat
     
-    init(center: CGPoint, radius: CGFloat) {
+    public init(center: CGPoint, radius: CGFloat) {
         self.center = center
         self.radius = radius
     }
     
-    func willCollideWith(projectile: Projectile) -> Bool {
+    public func willCollideWith(projectile: Projectile) -> Bool {
         let distance = (center.subtract(projectile.getCenter())).length()
         if distance < radius + projectile.getRadius() {
             projectile.stop()

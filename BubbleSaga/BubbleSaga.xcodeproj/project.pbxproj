@@ -19,6 +19,7 @@
 		C236B4B51E59A5930036FDED /* GamePlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C236B4B41E59A5930036FDED /* GamePlayViewController.swift */; };
 		C2EC0BDA1E603AA2002F64D7 /* BubbleGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EC0BD91E603AA2002F64D7 /* BubbleGraph.swift */; };
 		C2EC0BDC1E603B0B002F64D7 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EC0BDB1E603B0B002F64D7 /* Queue.swift */; };
+		C2EC0BE01E604F3E002F64D7 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EC0BDF1E604F3E002F64D7 /* Util.swift */; };
 		C2F7E98C1E601D8C00F08608 /* BubbleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F7E98B1E601D8C00F08608 /* BubbleModel.swift */; };
 		C2F7E98E1E601D9600F08608 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F7E98D1E601D9600F08608 /* BubbleView.swift */; };
 		C2F7E9901E601DA500F08608 /* BubbleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F7E98F1E601DA500F08608 /* BubbleController.swift */; };
@@ -63,6 +64,7 @@
 		C236B4B41E59A5930036FDED /* GamePlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePlayViewController.swift; sourceTree = "<group>"; };
 		C2EC0BD91E603AA2002F64D7 /* BubbleGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleGraph.swift; sourceTree = "<group>"; };
 		C2EC0BDB1E603B0B002F64D7 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		C2EC0BDF1E604F3E002F64D7 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		C2F7E98B1E601D8C00F08608 /* BubbleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleModel.swift; sourceTree = "<group>"; };
 		C2F7E98D1E601D9600F08608 /* BubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		C2F7E98F1E601DA500F08608 /* BubbleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleController.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				C2F7E9891E601CFC00F08608 /* LevelDesigner */,
 				C2F7E98A1E601D0600F08608 /* GamePlay */,
 				C2F7E9881E601CE500F08608 /* Bubble */,
+				C2EC0BDE1E604F2A002F64D7 /* Util */,
 				C2F7E9871E601CD700F08608 /* Constant */,
 				C236B48B1E597C2A0036FDED /* Assets.xcassets */,
 				C236B48D1E597C2A0036FDED /* LaunchScreen.storyboard */,
@@ -161,6 +164,14 @@
 				C236B4A61E597C2A0036FDED /* Info.plist */,
 			);
 			path = BubbleSagaUITests;
+			sourceTree = "<group>";
+		};
+		C2EC0BDE1E604F2A002F64D7 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				C2EC0BDF1E604F3E002F64D7 /* Util.swift */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 		C2F7E9871E601CD700F08608 /* Constant */ = {
@@ -400,6 +411,7 @@
 				C2F7E9921E601DB300F08608 /* ProjectileController.swift in Sources */,
 				C236B4851E597C2A0036FDED /* AppDelegate.swift in Sources */,
 				C2F7E98C1E601D8C00F08608 /* BubbleModel.swift in Sources */,
+				C2EC0BE01E604F3E002F64D7 /* Util.swift in Sources */,
 				C236B4B51E59A5930036FDED /* GamePlayViewController.swift in Sources */,
 				C2F7E9901E601DA500F08608 /* BubbleController.swift in Sources */,
 				C2EC0BDA1E603AA2002F64D7 /* BubbleGraph.swift in Sources */,

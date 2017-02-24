@@ -149,7 +149,7 @@ class GamePlayViewController: UIViewController {
         world?.addBorder(leftWall)
         world?.addBorder(rightWall)
         
-        _ = Timer.scheduledTimer(timeInterval: TimeInterval(Constant.TIME_STEP), target: self, selector: #selector(ViewController.gameLoop), userInfo: nil, repeats: true)
+        _ = Timer.scheduledTimer(timeInterval: TimeInterval(Constant.TIME_STEP), target: self, selector: #selector(GamePlayViewController.gameLoop), userInfo: nil, repeats: true)
         
     }
     
