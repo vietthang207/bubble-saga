@@ -14,11 +14,11 @@ class LevelDesignerViewController: UIViewController {
     @IBOutlet var grid: UICollectionView!
     @IBOutlet var paletteButtons: [UIButton]!
     
-    private var radius = CGFloat(1.0)
-    private var paletteState = PaletteState.noneSelected
+    private var radius: CGFloat = 1.0
+    private var paletteState: PaletteState = .noneSelected
     private var gridViewController = GridViewController(radius: 1.0)
     private var levelName: String?
-    private var gameLevelList = [String]()
+    private var gameLevelList: [String] = []
     private let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     
     override func viewDidLoad() {
@@ -83,7 +83,7 @@ class LevelDesignerViewController: UIViewController {
     func handleTap(recognizer: UITapGestureRecognizer) {
         let location = recognizer.location(in: grid)
         if let indexPath = grid.indexPathForItem(at: location) {
-            if paletteState != PaletteState.noneSelected {
+            if paletteState != .noneSelected {
                 gridViewController.changeBubbleByIndexPath(indexPath, paletteState: paletteState)
             } else {
                 gridViewController.cycleBubbleTypeByIndexPath(indexPath)
@@ -94,7 +94,7 @@ class LevelDesignerViewController: UIViewController {
     func handleLongPress(recognizer: UILongPressGestureRecognizer) {
         let location = recognizer.location(in: grid)
         if let indexPath = grid.indexPathForItem(at: location) {
-            gridViewController.changeBubbleByIndexPath(indexPath, paletteState: PaletteState.erase)
+            gridViewController.changeBubbleByIndexPath(indexPath, paletteState: .erase)
         }
     }
     
@@ -125,7 +125,7 @@ class LevelDesignerViewController: UIViewController {
         
         if isDeactivation {
             // deactivation by tapping on a button that has been already selected
-            paletteState = PaletteState.noneSelected
+            paletteState = .noneSelected
         } else {
             // tapping on a button that has not been selected
             switch bubbleSelected.currentTitle! {
@@ -148,7 +148,7 @@ class LevelDesignerViewController: UIViewController {
             case Constant.BUTTON_NAME_STAR:
                 paletteState = .star
             default:
-                paletteState = PaletteState.noneSelected
+                paletteState = .noneSelected
             }
         }
     }
@@ -294,12 +294,10 @@ class LevelDesignerViewController: UIViewController {
     }
     
     @IBAction func loadPressed(_ sender: Any) {
-        if gameLevelList.count == 0 {
+        guard gameLevelList.isEmpty else {
             showFileNotFound()
-        } else {
-            showGameLevelOptionMenu()
         }
-
+        showGameLevelOptionMenu()
     }
     
     private func showGameLevelOptionMenu() {
@@ -323,13 +321,14 @@ class LevelDesignerViewController: UIViewController {
         let fileName = name + Constant.FILE_EXTENSION_PLIST
         let fileURL = documentDirectory.appendingPathComponent(fileName)
         
-        if FileManager.default.fileExists(atPath: fileURL.path) {
-            let data = try? Data(contentsOf: fileURL)
-            let unarchiver = NSKeyedUnarchiver(forReadingWith: data!)
+        guard FileManager.default.fileExists(atPath: fileURL.path) else {
+            return
+        }
+        guard let data = try? Data(contentsOf: fileURL), let unarchiver = NSKeyedUnarchiver(forReadingWith: data) else {
+                return
+            }
             let gameLevel = unarchiver.decodeObject(forKey: Constant.KEY_GAME_LEVEL) as! GameLevel
             gridViewController.loadGameLevel(gameLevel: gameLevel)
-        }
-        
     }
     
     private func showFileNotFound() {

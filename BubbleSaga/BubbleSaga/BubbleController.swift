@@ -21,16 +21,8 @@ class BubbleController: UIViewController {
         self.bubbleModel = model
         super.init(nibName: nil, bundle: nil)
         self.view = view
-        self.view.alpha = (bubbleModel.getBubbleType() == .empty) ? Constant.ALPHA_HALF : Constant.ALPHA_FULL
+        self.view.alpha = bubbleModel.getBubbleType() == .empty ? Constant.ALPHA_HALF : Constant.ALPHA_FULL
     }
-    
-    // func updateBubbleModel(_ newBubbleModel: BubbleModel) {
-    //     self.bubbleModel = newBubbleModel
-    //     self.view = BubbleView(image: BubbleView.getImageForBubbleType(newBubbleModel.getBubbleType()),
-    //                            center: newBubbleModel.getBubbleCenter(),
-    //                            radius: newBubbleModel.getBubbleRadius())
-    //     self.view.alpha = (bubbleModel.getBubbleType() == .empty) ? Constant.ALPHA_HALF : Constant.ALPHA_FULL
-    // }
     
     func getType() -> BubbleType {
         return bubbleModel.getBubbleType()
@@ -46,7 +38,7 @@ class BubbleController: UIViewController {
         let bubbleView = self.view as! BubbleView
         bubbleView.setNewImage(BubbleView.getImageForBubbleType(newType))
         self.view = bubbleView
-        self.view.alpha = (bubbleModel.getBubbleType() == .empty) ? Constant.ALPHA_HALF : Constant.ALPHA_FULL
+        self.view.alpha = bubbleModel.getBubbleType() == .empty ? Constant.ALPHA_HALF : Constant.ALPHA_FULL
     }
     
     func cycleType() {
@@ -54,9 +46,10 @@ class BubbleController: UIViewController {
     }
     
     func changeViewWithCenter(_ newCenter: CGPoint, newRadius: CGFloat) {
+        guard let bubbleView = self.view as? BubbleView else {
+            return
+        }
         bubbleModel.updateViewWithCenter(newCenter, newRadius: newRadius)
-        
-        let bubbleView = self.view as! BubbleView
         bubbleView.setCenterAndRadius(newCenter: newCenter, newRadius: newRadius)
     }
     

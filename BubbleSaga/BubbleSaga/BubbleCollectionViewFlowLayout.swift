@@ -9,7 +9,7 @@
 import UIKit
 
 class BubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
-    private let radius : CGFloat
+    private let radius: CGFloat
     
     required init?(coder aDecoder: NSCoder) {
         self.radius = 1.0
@@ -39,11 +39,14 @@ class BubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        let attributesArray = super.layoutAttributesForElements(in: rect)
+        guard let attributesArray = super.layoutAttributesForElements(in: rect) else {
+            return
+        }
         var newAttributesArray = [UICollectionViewLayoutAttributes]()
-        for attribute in attributesArray! {
-            let newAttribute = layoutAttributesForItem(at: attribute.indexPath)
-            newAttributesArray.append(newAttribute!)
+        for attribute in attributesArray {
+            if let newAttribute = layoutAttributesForItem(at: attribute.indexPath) {
+                newAttributesArray.append(newAttribute)
+            }
         }
         return newAttributesArray
     }

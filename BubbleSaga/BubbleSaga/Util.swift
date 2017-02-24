@@ -9,7 +9,7 @@
 import UIKit
 
 class Util {
-    static func getCenterForBubbleAt(row: Int, col: Int, radius: CGFloat) -> CGPoint{
+    static func getCenterForBubbleAt(row: Int, col: Int, radius: CGFloat) -> CGPoint {
         var x = radius + 2 * CGFloat(col) * radius
         let y = radius + sqrt(3) * CGFloat(row) * radius
         if row % 2 == 1 {

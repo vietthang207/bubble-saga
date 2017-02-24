@@ -10,8 +10,8 @@ import UIKit
 
 class GameLevel: NSObject, NSCoding {
     
-    private var bubbleCollection : [Int32]
-    private var gameLevelName : String
+    private var bubbleCollection: [Int32]
+    private var gameLevelName: String
     
     override init() {
         self.bubbleCollection = [Int32]()

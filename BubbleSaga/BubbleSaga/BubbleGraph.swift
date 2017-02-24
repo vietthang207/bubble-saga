@@ -27,7 +27,7 @@ class BubbleGraph {
         for row in 0..<numRow {
             for col in 0..<numColumnsOfRow(row) {
                 let index = Index(row: row, col: col)
-                nodeList[index] = Node(index: index)
+                nodeList[index] = Node()
                 adjacentList[index] = getAdjacentNodesOfNodeAt(index: index)
             }
         }
@@ -170,11 +170,9 @@ class BubbleGraph {
 }
 
 struct Node {
-    var index: Index
     var type: BubbleType
     
-    init(index: Index) {
-        self.index = index
+    init() {
         type = .empty
     }
 }

@@ -30,7 +30,7 @@ class BubbleModel: NSObject {
         self.type = newType
     }
     
-    func getNextType() -> BubbleType{
+    func getNextType() -> BubbleType {
         return self.type.nextType()
     }
     

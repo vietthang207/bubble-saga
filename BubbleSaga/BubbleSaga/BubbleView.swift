@@ -45,12 +45,12 @@ class BubbleView: UIImageView {
         case .star:
             return UIImage(named: Constant.IMAGE_NAME_BUBBLE_STAR)!
         case .empty:
-            return drawCicle()
+            return drawCircle()
         }
     }
     
     /// draw a circle image for empty bubble
-    private static func drawCicle() -> UIImage {
+    private static func drawCircle() -> UIImage {
         let RADIUS = Constant.IMAGE_RADIUS
         
         let frameSize = CGSize(width: RADIUS * 2.0, height: RADIUS * 2.0)
