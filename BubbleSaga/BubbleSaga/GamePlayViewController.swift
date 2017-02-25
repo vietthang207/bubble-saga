@@ -14,6 +14,7 @@ class GamePlayViewController: UIViewController {
     @IBOutlet var cannonArea: UIView!
     @IBOutlet var gameOverLine: UIView!
     
+    var data: [[BubbleType]]?
     private var radius: CGFloat = 1.0
     
     // Controller to control projectile's MVC
@@ -65,6 +66,23 @@ class GamePlayViewController: UIViewController {
     
     private func loadGrid() {
         loadEmptyGrid(radius: radius)
+        if let data = data {
+            for row in 0..<Constant.NUMB_ROWS {
+                var numberBubbles = Constant.NUMB_COLUMNS
+                if row % 2 == 1 {
+                    numberBubbles -= 1
+                }
+                
+                for col in 0..<numberBubbles {
+                    if data[row][col] == .empty {
+                        continue
+                    }
+                    let index = Index(row: row, col: col)
+                    setBubbleOfType(data[row][col], atIndex: index)
+                }
+            }
+        }
+        
     }
     
     private func loadCannonArea() {
@@ -139,6 +157,8 @@ class GamePlayViewController: UIViewController {
         world.addBorder(ceiling)
         world.addBorder(leftWall)
         world.addBorder(rightWall)
+        let midAirBubbles = self.graph.getAndRemoveMidAirBubbles()
+        self.clearBubbleByIndexList(midAirBubbles)
         
         _ = Timer.scheduledTimer(timeInterval: TimeInterval(Constant.TIME_STEP), target: self, selector: #selector(GamePlayViewController.gameLoop), userInfo: nil, repeats: true)
         
@@ -166,11 +186,7 @@ class GamePlayViewController: UIViewController {
     }
     
     func snapProjectile(_ projectile: ProjectileController, toIndex: Index) {
-        setBubble(projectile, atIndex: toIndex)
-        let center = Util.getCenterForBubbleAt(row: toIndex.row, col: toIndex.col, radius: radius)
-        let newBubble = CircleCollidable(center: center, radius: radius)
-        world.addBubbleAtIndex(toIndex, bubble: newBubble)
-        graph.changeBubbleTypeAt(row: toIndex.row, col: toIndex.col, type: projectile.getType())
+        setBubbleOfType(projectile.getType(), atIndex: toIndex)
         let connectedComponent = graph.getAndDeleteConnectedComponentOfTheSameColorAt(row: toIndex.row, col: toIndex.col)
         if connectedComponent.count >= Constant.GROUP_SIZE_TO_EXPLODE {
             self.clearBubbleByIndexList(connectedComponent)
@@ -264,8 +280,12 @@ class GamePlayViewController: UIViewController {
         return result
     }
     
-    func setBubble(_ bubble: ProjectileController, atIndex index: Index) {
-        bubbleControllers[index.row][index.col].changeType(bubble.getType())
+    func setBubbleOfType(_ bubbleType: BubbleType, atIndex index: Index) {
+        bubbleControllers[index.row][index.col].changeType(bubbleType)
+        let center = Util.getCenterForBubbleAt(row: index.row, col: index.col, radius: radius)
+        let newBubble = CircleCollidable(center: center, radius: radius)
+        world.addBubbleAtIndex(index, bubble: newBubble)
+        graph.changeBubbleTypeAt(row: index.row, col: index.col, type: bubbleType)
     }
     
 }

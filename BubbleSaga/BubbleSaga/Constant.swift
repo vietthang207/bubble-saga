@@ -100,7 +100,7 @@ enum BubbleType: Int {
         if self == .empty {
             return .empty
         }
-        return BubbleType(rawValue: ((self.rawValue + 1) % Constant.NUMB_BUBBLE_COLOUR))!
+        return BubbleType(rawValue: ((self.rawValue + 1) % Constant.NUMB_BUBBLE_TYPE))!
     }
 }
 

@@ -40,7 +40,7 @@ class BubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         guard let attributesArray = super.layoutAttributesForElements(in: rect) else {
-            return
+            return []
         }
         var newAttributesArray = [UICollectionViewLayoutAttributes]()
         for attribute in attributesArray {

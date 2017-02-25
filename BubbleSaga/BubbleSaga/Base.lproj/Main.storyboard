@@ -54,7 +54,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Txi-qY-18I">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
+                                <rect key="frame" x="0.0" y="64" width="768" height="916"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2m5-qD-hjT">
@@ -79,7 +79,7 @@
                                         </cells>
                                     </collectionView>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xcS-Sg-gai">
-                                        <rect key="frame" x="0.0" y="868" width="768" height="112"/>
+                                        <rect key="frame" x="0.0" y="804" width="768" height="112"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XIX-ND-oBK">
@@ -190,6 +190,9 @@
                                 <rect key="frame" x="361" y="988" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="PLAY"/>
+                                <connections>
+                                    <segue destination="5qS-F5-cc3" kind="show" identifier="LevelDesignerPlay" id="17m-Kb-ia7"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fc-LZ-90h">
                                 <rect key="frame" x="680" y="988" width="46" height="30"/>
@@ -229,10 +232,52 @@
             </objects>
             <point key="canvasLocation" x="1513.28125" y="757.6171875"/>
         </scene>
+        <!--Game Play View Controller-->
+        <scene sceneID="nAY-yY-KPX">
+            <objects>
+                <viewController id="5qS-F5-cc3" customClass="GamePlayViewController" customModule="BubbleSaga" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9B0-68-2z8"/>
+                        <viewControllerLayoutGuide type="bottom" id="6ui-cX-PaU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RaK-dv-JRx">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cdK-g0-Asy">
+                                <rect key="frame" x="0.0" y="64" width="768" height="799"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7UT-n5-Gvz">
+                                        <rect key="frame" x="0.0" y="538" width="768" height="14"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oFC-9S-RaZ">
+                                <rect key="frame" x="0.0" y="871" width="768" height="153"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="cannonArea" destination="oFC-9S-RaZ" id="bPu-nP-ryc"/>
+                        <outlet property="gameArea" destination="cdK-g0-Asy" id="wj7-56-dBi"/>
+                        <outlet property="gameOverLine" destination="7UT-n5-Gvz" id="Y11-6C-fc2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FRg-qA-sJU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2178.90625" y="757.6171875"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Qhk-cQ-jdX">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="K6q-9i-zgY" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="K6q-9i-zgY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pqn-Us-WrQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

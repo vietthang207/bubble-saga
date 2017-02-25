@@ -19,7 +19,7 @@ class Util {
     }
     
     static func getRandomBubbleType() -> BubbleType {
-        let randomInteger = arc4random_uniform(UInt32(Constant.NUMB_BUBBLE_TYPE))
+        let randomInteger = arc4random_uniform(UInt32(Constant.NUMB_BUBBLE_COLOUR))
         return BubbleType(rawValue: Int(randomInteger))!
     }
 }

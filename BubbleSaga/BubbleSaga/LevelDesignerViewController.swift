@@ -293,9 +293,18 @@ class LevelDesignerViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let data = gridViewController.getBubbleData()
+        if let gamePlayViewController = segue.destination as? GamePlayViewController {
+            gamePlayViewController.data = data
+        }
+        
+    }
+    
     @IBAction func loadPressed(_ sender: Any) {
         guard gameLevelList.isEmpty else {
             showFileNotFound()
+            return
         }
         showGameLevelOptionMenu()
     }
@@ -324,11 +333,13 @@ class LevelDesignerViewController: UIViewController {
         guard FileManager.default.fileExists(atPath: fileURL.path) else {
             return
         }
-        guard let data = try? Data(contentsOf: fileURL), let unarchiver = NSKeyedUnarchiver(forReadingWith: data) else {
-                return
-            }
-            let gameLevel = unarchiver.decodeObject(forKey: Constant.KEY_GAME_LEVEL) as! GameLevel
+        guard let data = try? Data(contentsOf: fileURL) else {
+            return
+        }
+        let unarchiver = NSKeyedUnarchiver(forReadingWith: data)
+        if let gameLevel = unarchiver.decodeObject(forKey: Constant.KEY_GAME_LEVEL) as? GameLevel {
             gridViewController.loadGameLevel(gameLevel: gameLevel)
+        }
     }
     
     private func showFileNotFound() {
