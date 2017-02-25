@@ -68,4 +68,15 @@ class Util {
         
         return circleImage!
     }
+    
+    static func getAngleInRadianFromVector(_ vector: CGVector) -> CGFloat {
+        if vector.dy == 0 {
+            if vector.dx > 0 {
+                return CGFloat.pi / 2
+            }
+            return -CGFloat.pi / 2
+        }
+        return atan(vector.dx / -vector.dy)
+    }
+    
 }

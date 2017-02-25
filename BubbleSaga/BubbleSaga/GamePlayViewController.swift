@@ -35,6 +35,10 @@ class GamePlayViewController: UIViewController {
     // Graph to support bfs checking
     private var graph = BubbleGraph(numRow: Constant.NUMB_ROWS, numCol: Constant.NUMB_COLUMNS)
     
+    private var cannonView = UIImageView()
+    private var cannonBaseView = UIImageView()
+    private var cannonDirection = CGVector(dx: 0, dy: 1)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -93,6 +97,36 @@ class GamePlayViewController: UIViewController {
         gameArea.addSubview(cannonArea)
     }
     
+    private func loadCannon() {
+        let cannonImage = UIImage(named: Constant.IMAGE_NAME_CANNON)
+        let rect = CGRect(x: 0, y: 0, width: 220, height: 400)
+        let imageRef = cannonImage?.cgImage?.cropping(to: rect)
+        let image = UIImage(cgImage: imageRef!)
+        cannonView.removeFromSuperview()
+        cannonView = UIImageView(image: image)
+        let cannonHeight = 3 * radius
+        let cannonWidth = 2 * radius
+        let x = origin.x - cannonWidth / 2
+        let y = origin.y - cannonHeight / 2
+        cannonView.frame = CGRect(x: x, y: y, width: cannonWidth, height: cannonHeight)
+        rotateCannon()
+        gameArea.addSubview(cannonView)
+        
+        let cannonBaseImage = UIImage(named: Constant.IMAGE_NAME_CANNON_BASE)
+        cannonBaseView.removeFromSuperview()
+        cannonBaseView = UIImageView(image: cannonBaseImage)
+        cannonBaseView.frame = CGRect(x: x, y: y + 31, width: cannonWidth, height: cannonWidth)
+        gameArea.addSubview(cannonBaseView)
+    }
+    
+    private func rotateCannon() {
+        if cannonDirection.dy > 0 {
+            return
+        }
+        let angle = Util.getAngleInRadianFromVector(cannonDirection)
+        cannonView.transform = CGAffineTransform(rotationAngle: angle)
+    }
+    
     // Run only once when view loading
     private func prepareNewProjectile() {
         while upcomingBubbleType.count < Constant.UPCOMMING_BUBBLE_QUEUE_SIZE {
@@ -107,7 +141,6 @@ class GamePlayViewController: UIViewController {
         let upcomingBubbleArray = upcomingBubbleType.toArray()
         for i in 0..<upcomingBubbleArray.count {
             upcommingBubbles[i].image = Util.getImageForBubbleType(upcomingBubbleArray[i])
-            print(upcomingBubbleArray[i])
         }
         
         let bubbleModel = BubbleModel(type: startingType,
@@ -121,6 +154,7 @@ class GamePlayViewController: UIViewController {
         let projectileController = ProjectileController(model: bubbleModel, view: bubbleView, physicalProjectile: physicalProjectile)
         projectileControllers.append(projectileController)
         gameArea.addSubview(projectileController.view)
+        loadCannon()
     }
     
     private func addGestureRecognizersForGrid() {
@@ -139,7 +173,8 @@ class GamePlayViewController: UIViewController {
         if recognizer.state != .ended && recognizer.state != .failed {
             //rotate the cannon
             let location = recognizer.location(in: gameArea)
-            fireAt(location: location)
+            cannonDirection = location.subtract(origin)
+            rotateCannon()
         } else if recognizer.state == .ended && recognizer.state != .failed {
             let location = recognizer.location(in: gameArea)
             fireAt(location: location)
@@ -148,6 +183,7 @@ class GamePlayViewController: UIViewController {
     
     func handleTap(recognizer: UITapGestureRecognizer) {
         let location = recognizer.location(in: gameArea)
+        cannonDirection = location.subtract(origin)
         fireAt(location: location)
     }
     

@@ -20,6 +20,8 @@ struct Constant {
     static let IMAGE_NAME_BUBBLE_INDESTRUCTIBLE = "bubble-indestructible.png"
     static let IMAGE_NAME_BUBBLE_LIGHTNING = "bubble-lightning.png"
     static let IMAGE_NAME_BUBBLE_STAR = "bubble-star.png"
+    static let IMAGE_NAME_CANNON = "cannon.png"
+    static let IMAGE_NAME_CANNON_BASE = "cannon-base.png"
     
     static let BUTTON_NAME_BLUE = "blue"
     static let BUTTON_NAME_GREEN = "green"
