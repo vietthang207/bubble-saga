@@ -83,6 +83,8 @@ struct Constant {
     static let GROUP_SIZE_TO_EXPLODE = 3
     
     static let ANIMATION_DUTATION_FADING = 1.0
+    
+    static let UPCOMMING_BUBBLE_QUEUE_SIZE = 3
 }
 
 enum BubbleType: Int {

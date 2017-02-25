@@ -26,49 +26,4 @@ class BubbleView: UIImageView {
         self.frame = CGRect(x: newCenter.x - newRadius, y: newCenter.y - newRadius, width: 2.0 * newRadius, height: 2.0 * newRadius)
     }
     
-    static func getImageForBubbleType(_ type: BubbleType) -> UIImage {
-        switch (type) {
-        case .blue:
-            return UIImage(named: Constant.IMAGE_NAME_BUBBLE_BLUE)!
-        case .green:
-            return UIImage(named: Constant.IMAGE_NAME_BUBBLE_GREEN)!
-        case .orange:
-            return UIImage(named: Constant.IMAGE_NAME_BUBBLE_ORANGE)!
-        case .red:
-            return UIImage(named: Constant.IMAGE_NAME_BUBBLE_RED)!
-        case .bomb:
-            return UIImage(named: Constant.IMAGE_NAME_BUBBLE_BOMB)!
-        case .indestructible:
-            return UIImage(named: Constant.IMAGE_NAME_BUBBLE_INDESTRUCTIBLE)!
-        case .lightning:
-            return UIImage(named: Constant.IMAGE_NAME_BUBBLE_LIGHTNING)!
-        case .star:
-            return UIImage(named: Constant.IMAGE_NAME_BUBBLE_STAR)!
-        case .empty:
-            return drawCircle()
-        }
-    }
-    
-    /// draw a circle image for empty bubble
-    private static func drawCircle() -> UIImage {
-        let RADIUS = Constant.IMAGE_RADIUS
-        
-        let frameSize = CGSize(width: RADIUS * 2.0, height: RADIUS * 2.0)
-        
-        let circlePath = UIBezierPath(roundedRect:CGRect(x: 0, y: 0,
-                                                         width: RADIUS * 2.0, height: RADIUS * 2.0), cornerRadius: RADIUS)
-        
-        let circleLayer = CAShapeLayer()
-        circleLayer.path = circlePath.cgPath
-        circleLayer.fillColor = UIColor.clear.cgColor
-        circleLayer.strokeColor = UIColor.black.cgColor
-        circleLayer.lineWidth = 0.0
-        
-        UIGraphicsBeginImageContext(frameSize)
-        circleLayer.render(in: UIGraphicsGetCurrentContext()!)
-        let circleImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return circleImage!
-    }
 }

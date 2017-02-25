@@ -60,7 +60,7 @@ class GridViewController: UIViewController, UICollectionViewDataSource {
         let bubbleModel = BubbleModel(type: .empty,
                                       center: CGPoint(x: center.x, y: center.y),
                                       radius: radius)
-        let bubbleView = BubbleView(image: BubbleView.getImageForBubbleType(.empty),
+        let bubbleView = BubbleView(image: Util.getImageForBubbleType(.empty),
                                     center: CGPoint(x: center.x, y: center.y),
                                     radius: radius)
         bubbleView.alpha = CGFloat(Constant.ALPHA_FULL)

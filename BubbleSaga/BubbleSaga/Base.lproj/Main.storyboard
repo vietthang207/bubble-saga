@@ -245,7 +245,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cdK-g0-Asy">
-                                <rect key="frame" x="0.0" y="64" width="768" height="799"/>
+                                <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7UT-n5-Gvz">
@@ -253,12 +253,26 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oFC-9S-RaZ">
+                                        <rect key="frame" x="0.0" y="848" width="768" height="112"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bubble-red" translatesAutoresizingMaskIntoConstraints="NO" id="fc8-bk-1fz">
+                                                <rect key="frame" x="120" y="24" width="64" height="64"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bubble-green" translatesAutoresizingMaskIntoConstraints="NO" id="xfX-75-FoI">
+                                                <rect key="frame" x="200" y="24" width="64" height="64"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bubble-blue" translatesAutoresizingMaskIntoConstraints="NO" id="mhZ-3P-jO4">
+                                                <rect key="frame" x="40" y="24" width="64" height="64"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oFC-9S-RaZ">
-                                <rect key="frame" x="0.0" y="871" width="768" height="153"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -268,6 +282,9 @@
                         <outlet property="cannonArea" destination="oFC-9S-RaZ" id="bPu-nP-ryc"/>
                         <outlet property="gameArea" destination="cdK-g0-Asy" id="wj7-56-dBi"/>
                         <outlet property="gameOverLine" destination="7UT-n5-Gvz" id="Y11-6C-fc2"/>
+                        <outletCollection property="upcommingBubbles" destination="xfX-75-FoI" collectionClass="NSMutableArray" id="scJ-b6-qil"/>
+                        <outletCollection property="upcommingBubbles" destination="fc8-bk-1fz" collectionClass="NSMutableArray" id="qi7-oq-jAg"/>
+                        <outletCollection property="upcommingBubbles" destination="mhZ-3P-jO4" collectionClass="NSMutableArray" id="KBk-Sy-OYx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FRg-qA-sJU" userLabel="First Responder" sceneMemberID="firstResponder"/>

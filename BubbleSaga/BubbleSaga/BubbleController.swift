@@ -36,7 +36,7 @@ class BubbleController: UIViewController {
         bubbleModel.setBubbleType(newType)
         
         let bubbleView = self.view as! BubbleView
-        bubbleView.setNewImage(BubbleView.getImageForBubbleType(newType))
+        bubbleView.setNewImage(Util.getImageForBubbleType(newType))
         self.view = bubbleView
         self.view.alpha = bubbleModel.getBubbleType() == .empty ? Constant.ALPHA_HALF : Constant.ALPHA_FULL
     }

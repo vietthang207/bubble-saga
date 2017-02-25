@@ -13,9 +13,12 @@ class GamePlayViewController: UIViewController {
     @IBOutlet var gameArea: UIView!
     @IBOutlet var cannonArea: UIView!
     @IBOutlet var gameOverLine: UIView!
+    @IBOutlet var upcommingBubbles: [UIImageView]!
     
     var data: [[BubbleType]]?
     private var radius: CGFloat = 1.0
+    
+    private var upcomingBubbleType = Queue<BubbleType>()
     
     // Controller to control projectile's MVC
     private var projectileControllers: [ProjectileController] = []
@@ -92,12 +95,25 @@ class GamePlayViewController: UIViewController {
     
     // Run only once when view loading
     private func prepareNewProjectile() {
+        while upcomingBubbleType.count < Constant.UPCOMMING_BUBBLE_QUEUE_SIZE {
+            upcomingBubbleType.enqueue(Util.getRandomBubbleType())
+        }
+        
         let physicalProjectile = Projectile(center: origin, radius: radius, velocity: CGVector(dx: 0, dy: 0))
-        let startingType = Util.getRandomBubbleType()
+        guard let startingType = try? upcomingBubbleType.dequeue() else {
+            return
+        }
+        upcomingBubbleType.enqueue(Util.getRandomBubbleType())
+        let upcomingBubbleArray = upcomingBubbleType.toArray()
+        for i in 0..<upcomingBubbleArray.count {
+            upcommingBubbles[i].image = Util.getImageForBubbleType(upcomingBubbleArray[i])
+            print(upcomingBubbleArray[i])
+        }
+        
         let bubbleModel = BubbleModel(type: startingType,
                                       center: origin,
                                       radius: radius)
-        let bubbleView = BubbleView(image: BubbleView.getImageForBubbleType(startingType),
+        let bubbleView = BubbleView(image: Util.getImageForBubbleType(startingType),
                                     center: origin,
                                     radius: radius)
         bubbleView.alpha = CGFloat(Constant.ALPHA_FULL)
@@ -186,12 +202,13 @@ class GamePlayViewController: UIViewController {
     }
     
     func snapProjectile(_ projectile: ProjectileController, toIndex: Index) {
-        setBubbleOfType(projectile.getType(), atIndex: toIndex)
+        let activatingType = projectile.getType()
+        setBubbleOfType(activatingType, atIndex: toIndex)
         let connectedComponent = graph.getAndDeleteConnectedComponentOfTheSameColorAt(row: toIndex.row, col: toIndex.col)
         if connectedComponent.count >= Constant.GROUP_SIZE_TO_EXPLODE {
             self.clearBubbleByIndexList(connectedComponent)
         }
-        let destroyedBySpecialBubbles = graph.activateSpecialBubblesAdjacentTo(row: toIndex.row, col: toIndex.col)
+        let destroyedBySpecialBubbles = graph.activateSpecialBubblesAdjacentTo(row: toIndex.row, col: toIndex.col, activatingType: activatingType)
         self.clearBubbleByIndexList(destroyedBySpecialBubbles)
         let midAirBubbles = self.graph.getAndRemoveMidAirBubbles()
         self.clearBubbleByIndexList(midAirBubbles)
@@ -248,7 +265,7 @@ class GamePlayViewController: UIViewController {
         let bubbleModel = BubbleModel(type: .empty,
                                       center: CGPoint(x: center.x, y: center.y),
                                       radius: radius)
-        let bubbleView = BubbleView(image: BubbleView.getImageForBubbleType(.empty),
+        let bubbleView = BubbleView(image: Util.getImageForBubbleType(.empty),
                                     center: CGPoint(x: center.x, y: center.y),
                                     radius: radius)
         bubbleView.alpha = CGFloat(Constant.ALPHA_FULL)

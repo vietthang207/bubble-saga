@@ -124,11 +124,10 @@ class BubbleGraph {
         return connectedComponent
     }
     
-    func activateSpecialBubblesAdjacentTo(row: Int, col: Int) -> [Index] {
+    func activateSpecialBubblesAdjacentTo(row: Int, col: Int, activatingType: BubbleType) -> [Index] {
         var toBeDestroyed = [Index]()
         var chain = Queue<SpecialNode>()
         let projectileIndex = Index(row: row, col: col)
-        let projectileType = nodeList[projectileIndex]
         
         let neighbors = getAdjacentNodesOfNodeAt(index: projectileIndex)
         for neighbor in neighbors {
@@ -153,7 +152,7 @@ class BubbleGraph {
             case .lightning:
                 activateLightningAtIndex(currentIndex, chain: &chain, toBeDestroyed: &toBeDestroyed)
             case .star:
-                activateStarByType(projectileType!, chain: &chain, toBeDestroyed: &toBeDestroyed)
+                activateStarByType(activatingType, chain: &chain, toBeDestroyed: &toBeDestroyed)
             default:
                 break
             }
