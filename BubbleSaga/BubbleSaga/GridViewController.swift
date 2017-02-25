@@ -74,7 +74,7 @@ class GridViewController: UIViewController, UICollectionViewDataSource {
         let col = indexPath.item
         
         let bubble = bubbleControllers[row][col]
-        switch (paletteState) {
+        switch paletteState {
         case .blue:
             bubble.changeType(.blue)
         case .green:
