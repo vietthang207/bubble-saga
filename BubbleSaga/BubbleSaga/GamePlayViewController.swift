@@ -165,7 +165,7 @@ class GamePlayViewController: UIViewController {
     }
     
     func gameLoop() {
-        let willCollide = world.simulate(timeStep: Constant.TIME_STEP)
+        _ = world.simulate(timeStep: Constant.TIME_STEP)
         for i in (0..<projectileControllers.count).reversed() {
             let projectileController = projectileControllers[i]
             let physicalProjectile = projectileController.physicalProjectile
@@ -190,9 +190,11 @@ class GamePlayViewController: UIViewController {
         let connectedComponent = graph.getAndDeleteConnectedComponentOfTheSameColorAt(row: toIndex.row, col: toIndex.col)
         if connectedComponent.count >= Constant.GROUP_SIZE_TO_EXPLODE {
             self.clearBubbleByIndexList(connectedComponent)
-            let midAirBubbles = self.graph.getAndRemoveMidAirBubbles()
-            self.clearBubbleByIndexList(midAirBubbles)
         }
+        let destroyedBySpecialBubbles = graph.activateSpecialBubblesAdjacentTo(row: toIndex.row, col: toIndex.col)
+        self.clearBubbleByIndexList(destroyedBySpecialBubbles)
+        let midAirBubbles = self.graph.getAndRemoveMidAirBubbles()
+        self.clearBubbleByIndexList(midAirBubbles)
     }
     
     private func clearBubbleByIndexList(_ list: [Index]) {

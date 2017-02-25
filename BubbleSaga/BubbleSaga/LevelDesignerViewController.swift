@@ -302,7 +302,7 @@ class LevelDesignerViewController: UIViewController {
     }
     
     @IBAction func loadPressed(_ sender: Any) {
-        guard gameLevelList.isEmpty else {
+        if gameLevelList.isEmpty {
             showFileNotFound()
             return
         }

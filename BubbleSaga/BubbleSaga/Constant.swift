@@ -102,6 +102,11 @@ enum BubbleType: Int {
         }
         return BubbleType(rawValue: ((self.rawValue + 1) % Constant.NUMB_BUBBLE_TYPE))!
     }
+    
+    func hasEffect() -> Bool {
+        return self == .bomb || self == .lightning || self == .star
+    }
+    
 }
 
 enum PaletteState {
