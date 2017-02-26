@@ -21,6 +21,8 @@ Every time a bubble explode or fall, user gain 1 score. Game over reached when u
 Note that if the level designed to have some bubble in mid air, they will fall when the level begins, 
 and user also been credit for score. 
 
+The app has 3 preload level(Heart, Broken_Heart, test) that only accessible through level selection window. 
+User can play and edit those levels but cannot overwrite those level.
 
 ### Problem 1: Cannon Direction
 
@@ -75,7 +77,7 @@ lightning bubble will be interrupted, resuming it later can be buggy.
 
 ### Problem 7: Class Diagram
 
-Please save your diagram as `class-diagram.png` in the root directory of the repository.
+Sorry, I have no time for class diagram. I attached ps3 and ps4 class diagram for your reference.
 
 ### Problem 8: Testing
 
@@ -148,6 +150,12 @@ II. Test Level Designer
 		  Try 1 option, load the levels to check whether they are correct
 		  Retry with the other option.
 
+		f. Test save a game level with a preload level's name
+		+ Modify some bubble (or clear all and add other color, i.e. orange)
+		+ Press save, an alert will be poped which has 3 options overwrite, save as or cancel
+		+ Choose save as and keyin a preload level name (i.e. "Heart") an alert should shown up 
+		  that force you to choose another name.
+
 
 	4 Test implement of reset
 
@@ -155,6 +163,25 @@ II. Test Level Designer
 		+ Press reset, should see an alert which has 2 options yes or no
 		+ Press yes, should see the bubble collection view changed to default state
 		+ Repeat, but choose no, nothing should happen after.
+
+	5 Test Play
+
+		a. Test play empty level
+		+ Press PLAY right after enter level designer mode, you should be start to play normally
+
+		b. Test play without saving
+		+ Modify some cells
+		+ Press PLAY, you should be moved to game play view with your drawed cells still be there.
+
+		c. Test load and play
+		+ Load a level
+		+ Press PLAY, you should be moved to game play view with your loaded cells still be there.
+
+		d. Test load, modify and play without saving
+		+ Load a level
+		+ Modify some cells
+		+ Press PLAY, you should be moved to game play view with your loaded cells and modified cells
+		 still be there.
 
 III. Test Game Play
 
@@ -239,6 +266,24 @@ III. Test Game Play
 		- Try to play so that one bubble will end up below the red line, an alert should appear with the message
 			"Game over!". After that, the endgame screen should appear.
 		- Try to play to reach the bubble limit, the same Game over alert and endgame screen should appear.
+
+IV. Test Level Selection
+
+	1. Test none-selected
+	+ Enter Level selection
+	+ Choose nothing, then press Play, nothing should happen
+	+ Press Edit, nothing should happen
+
+	2. Test Play
+	+ Enter Level selection
+	+ Choose 1 preload level, press play, you should be able to play that level with correct bubbles setup
+	+ Choose 1 non-preload level, press play, you should be able to play that level with correct bubbles setup
+
+	3. Test Edit
+	+ Enter Level selection
+	+ Choose 1 preload level, press edit, you should be able to edit that level with correct bubbles setup
+		Note that when you press save, it will ask you to enter a new name since you cannot overwrite a preload level.
+	+ Choose 1 non-preload level, press edit, you should be able to edit that level with correct bubbles setup
 
 Glass-box testing
 
@@ -337,3 +382,6 @@ when we still have bubbles left.
 
 If game engine use CollectionView just like the level designer, it will be even better since they will share 
 a lots more datastructure and method in common. I also need to refactor my code.
+
+My MVC can be improve: View can have 2 rendering mode, 1 for level designer (empty cells still visible), 1 for 
+game play (empty cells is invisible)
