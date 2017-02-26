@@ -238,7 +238,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1aH-fc-B1d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1513" y="1072"/>
+            <point key="canvasLocation" x="1512.5" y="1071.6796875"/>
         </scene>
         <!--Level Selection View Controller-->
         <scene sceneID="ERy-5S-wCm">
@@ -411,7 +411,7 @@
         <image name="erase" width="168" height="168"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Edm-nS-rm8"/>
+        <segue reference="17m-Kb-ia7"/>
         <segue reference="7cd-Dy-faW"/>
     </inferredMetricsTieBreakers>
 </document>

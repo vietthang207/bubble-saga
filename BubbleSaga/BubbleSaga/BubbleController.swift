@@ -8,18 +8,13 @@
 
 import UIKit
 
-class BubbleController: UIViewController {
+class BubbleController {
     
     var bubbleModel: BubbleModel
-    
-    required init?(coder aDecoder: NSCoder) {
-        self.bubbleModel = BubbleModel()
-        super.init(coder: aDecoder)
-    }
+    var view: BubbleView
     
     init(model: BubbleModel, view: BubbleView) {
         self.bubbleModel = model
-        super.init(nibName: nil, bundle: nil)
         self.view = view
         self.view.alpha = bubbleModel.getBubbleType() == .empty ? Constant.ALPHA_HALF : Constant.ALPHA_FULL
     }
@@ -34,10 +29,7 @@ class BubbleController: UIViewController {
     
     func changeType(_ newType: BubbleType) {
         bubbleModel.setBubbleType(newType)
-        
-        let bubbleView = self.view as! BubbleView
-        bubbleView.setNewImage(Util.getImageForBubbleType(newType))
-        self.view = bubbleView
+        view.setNewImage(Util.getImageForBubbleType(newType))
         self.view.alpha = bubbleModel.getBubbleType() == .empty ? Constant.ALPHA_HALF : Constant.ALPHA_FULL
     }
     
@@ -46,11 +38,8 @@ class BubbleController: UIViewController {
     }
     
     func changeViewWithCenter(_ newCenter: CGPoint, newRadius: CGFloat) {
-        guard let bubbleView = self.view as? BubbleView else {
-            return
-        }
         bubbleModel.updateViewWithCenter(newCenter, newRadius: newRadius)
-        bubbleView.setCenterAndRadius(newCenter: newCenter, newRadius: newRadius)
+        view.setCenterAndRadius(newCenter: newCenter, newRadius: newRadius)
     }
     
 }

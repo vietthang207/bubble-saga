@@ -12,11 +12,6 @@ import PhysicsEngine
 class ProjectileController: BubbleController {
     var physicalProjectile: Projectile
     
-    required init?(coder aDecoder: NSCoder) {
-        physicalProjectile = Projectile()
-        super.init(coder: aDecoder)
-    }
-    
     init(model: BubbleModel, view: BubbleView, physicalProjectile: Projectile) {
         self.physicalProjectile = physicalProjectile
         super.init(model: model, view: view)

@@ -84,6 +84,8 @@ struct Constant {
     
     static let TIME_STEP = CGFloat(1.0/60.0)
     static let SPEED = CGFloat(1000)
+    static let SPEED_FREE_FALL = CGFloat(3000)
+    static let FREE_FALL_ACCELERATON = 98
     
     static let INFINITY_FLOAT = CGFloat(99999999)
     
@@ -92,7 +94,7 @@ struct Constant {
     static let ANIMATION_DUTATION_FADING = 1.0
     
     static let UPCOMMING_BUBBLE_QUEUE_SIZE = 3
-    static let DEFAULT_BUBBLE_LIMIT = 10
+    static let DEFAULT_BUBBLE_LIMIT = 1000
     
     static let RATIO_CANNON_HEIGHT_OVER_RADIUS: CGFloat = 3.8
     static let RATIO_CANNON_WIDTH_OVER_RADIUS: CGFloat = 2.2

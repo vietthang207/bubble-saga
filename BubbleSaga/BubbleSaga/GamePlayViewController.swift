@@ -26,6 +26,7 @@ class GamePlayViewController: UIViewController {
     
     // Controller to control projectile's MVC
     private var projectileControllers: [ProjectileController] = []
+    private var freeFallBubbleControllers: [BubbleController] = []
     
     // Coordinate where all projectile stared at
     private var origin = CGPoint(x: 1.0, y: 1.0)
@@ -212,7 +213,7 @@ class GamePlayViewController: UIViewController {
         world.addBorder(leftWall)
         world.addBorder(rightWall)
         let midAirBubbles = self.graph.getAndRemoveMidAirBubbles()
-        self.clearBubbleByIndexList(midAirBubbles)
+        makeBubblesFreeFallByIndexList(midAirBubbles)
         
         _ = Timer.scheduledTimer(timeInterval: TimeInterval(Constant.TIME_STEP), target: self, selector: #selector(GamePlayViewController.gameLoop), userInfo: nil, repeats: true)
         
@@ -224,6 +225,7 @@ class GamePlayViewController: UIViewController {
         if bubbleLimit <= 0 && projectileControllers.count == 0 {
             showGameOverPopup()
         }
+        processFreeFallBubbles()
         _ = world.simulate(timeStep: Constant.TIME_STEP)
         for i in (0..<projectileControllers.count).reversed() {
             let projectileController = projectileControllers[i]
@@ -231,11 +233,10 @@ class GamePlayViewController: UIViewController {
             let y = physicalProjectile.getCenter().y
             if physicalProjectile.isStopped() || y > origin.y {
                 let index = getClosestEmptyCellTo(point: (physicalProjectile.getCenter()))
-                if index.row == Constant.NUMB_ROWS - 1 {
-                    //showGameOverPopup()
-                }
                 if isProjectile(physicalProjectile, closeToIndex: index) {
                     snapProjectile(projectileController, toIndex: index)
+                } else {
+                    makeProjectileFreeFall(projectile: projectileController)
                 }
                 projectileController.view.removeFromSuperview()
                 projectileControllers.remove(at: i)
@@ -246,17 +247,46 @@ class GamePlayViewController: UIViewController {
         }
     }
     
+    private func makeProjectileFreeFall(projectile: ProjectileController) {
+        let center = projectile.getCenter()
+        let bubbleModel = BubbleModel(type: projectile.getType(),
+                                      center: CGPoint(x: center.x, y: center.y),
+                                      radius: radius)
+        let bubbleView = BubbleView(image: Util.getImageForBubbleType(projectile.getType()),
+                                    center: CGPoint(x: center.x, y: center.y),
+                                    radius: radius)
+        bubbleView.alpha = CGFloat(Constant.ALPHA_FULL)
+        
+        let newBubbleController = BubbleController(model: bubbleModel, view: bubbleView)
+        gameArea.addSubview(newBubbleController.view)
+        freeFallBubbleControllers.append(newBubbleController)
+    }
+    
+    private func processFreeFallBubbles() {
+        let movementVector = CGVector(dx: 0, dy: Constant.SPEED_FREE_FALL).dot(scalar: Constant.TIME_STEP)
+        for  i in (0..<freeFallBubbleControllers.count).reversed() {
+            let bubbleController = freeFallBubbleControllers[i]
+            let center = bubbleController.getCenter()
+            let newCenter = center.translate(vector: movementVector)
+            bubbleController.changeViewWithCenter(newCenter, newRadius: radius)
+            if newCenter.y > origin.y {
+                bubbleController.view.removeFromSuperview()
+                freeFallBubbleControllers.remove(at: i)
+            }
+        }
+    }
+    
     func snapProjectile(_ projectile: ProjectileController, toIndex: Index) {
         let activatingType = projectile.getType()
         setBubbleOfType(activatingType, atIndex: toIndex)
         let connectedComponent = graph.getAndDeleteConnectedComponentOfTheSameColorAt(row: toIndex.row, col: toIndex.col)
         if connectedComponent.count >= Constant.GROUP_SIZE_TO_EXPLODE {
-            self.clearBubbleByIndexList(connectedComponent)
+            explodeBubbleByIndexList(connectedComponent)
         }
         let destroyedBySpecialBubbles = graph.activateSpecialBubblesAdjacentTo(row: toIndex.row, col: toIndex.col, activatingType: activatingType)
-        self.clearBubbleByIndexList(destroyedBySpecialBubbles)
+        explodeBubbleByIndexList(destroyedBySpecialBubbles)
         let midAirBubbles = self.graph.getAndRemoveMidAirBubbles()
-        self.clearBubbleByIndexList(midAirBubbles)
+        makeBubblesFreeFallByIndexList(midAirBubbles)
     }
     
     func isProjectile(_ projectile: Projectile, closeToIndex index: Index) -> Bool {
@@ -266,13 +296,13 @@ class GamePlayViewController: UIViewController {
         return distance < radius
     }
     
-    private func clearBubbleByIndexList(_ list: [Index]) {
+    private func explodeBubbleByIndexList(_ list: [Index]) {
         for index in list {
-            clearBubbleAtIndex(index)
+            explodeBubbleAtIndex(index)
         }
     }
     
-    private func clearBubbleAtIndex(_ index: Index) {
+    private func explodeBubbleAtIndex(_ index: Index) {
         let row = index.row
         let col = index.col
         if bubbleControllers[row][col].getType() != .empty {
@@ -281,9 +311,32 @@ class GamePlayViewController: UIViewController {
         self.world.deleteBubbleAtIndex(index)
         
         UIView.animate(withDuration: Constant.ANIMATION_DUTATION_FADING, animations: {
+            self.bubbleControllers[row][col].view.alpha = 0
+        }, completion: { _ in
             self.bubbleControllers[row][col].changeType(.empty)
         })
+
+    }
+    
+    private func makeBubblesFreeFallByIndexList(_ list: [Index]) {
+        for index in list {
+            makeBubbleFreeFallAtIndex(index)
+        }
+    }
+    
+    private func makeBubbleFreeFallAtIndex(_ index: Index) {
+        let row = index.row
+        let col = index.col
+        let type = bubbleControllers[row][col].getType()
+        if type != .empty {
+            score += 1
+        }
+        self.world.deleteBubbleAtIndex(index)
         
+        let newBubbleController = createEmptyBubble(radius: radius, row: row, col: col)
+        newBubbleController.changeType(type)
+        freeFallBubbleControllers.append(newBubbleController)
+        self.bubbleControllers[row][col].changeType(.empty)
     }
     
     private func showGameOverPopup() {
