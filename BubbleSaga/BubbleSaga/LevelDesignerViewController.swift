@@ -300,7 +300,12 @@ class LevelDesignerViewController: UIViewController {
         if let gamePlayViewController = segue.destination as? GamePlayViewController {
             gamePlayViewController.levelName = levelName
         }
-        
+        if levelName == nil {
+            let data = gridViewController.getBubbleData()
+            if let gamePlayViewController = segue.destination as? GamePlayViewController {
+                gamePlayViewController.data = data
+            }
+        }
     }
     
     @IBAction func loadPressed(_ sender: Any) {

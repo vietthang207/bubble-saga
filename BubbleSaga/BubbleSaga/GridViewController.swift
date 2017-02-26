@@ -106,6 +106,22 @@ class GridViewController: UIViewController, UICollectionViewDataSource {
         bubble.cycleType()
     }
     
+    func getBubbleData() -> [[BubbleType]] {
+        var list = [[BubbleType]]()
+        for row in 0..<Constant.NUMB_ROWS {
+            var numberBubbles = Constant.NUMB_COLUMNS
+            if row % 2 == 1 {
+                numberBubbles -= 1
+            }
+            list.append([])
+            for col in 0..<numberBubbles {
+                let bubbleType = bubbleControllers[row][col].getType()
+                list[row].append(bubbleType)
+            }
+        }
+        return list
+    }
+    
     func getSavableGameLevelObj() -> GameLevel {
         var list = [Int32]()
         for row in 0..<Constant.NUMB_ROWS {
