@@ -58,6 +58,8 @@ struct Constant {
     static let ALERT_MSG_ASK_NAME = "Enter game level name!"
     static let ALERT_MSG_OVERWRITE_OR_NOT = "Do you want to overwrite existing level or save game level as a new one?"
     static let ALERT_MSG_DUPLICATED_NAME = "The name you entered is existed, would you like to overwrite it or enter a new name?"
+    static let ALERT_MSG_CLASHED_NAME = "The name you entered is clash with a preload game level, would you like to enter a new name?"
+    static let ALERT_MSG_SAVE_PRELOAD = "This is a preload level that is read-only, you need to save it as a new level."
     static let ALERT_MSG_LOAD = "Enter the level name to load"
     static let ALERT_MSG_NOT_FOUND = "No saved game level to load"
     static let ALERT_MSG_GAME_OVER = "Game over!"
@@ -81,6 +83,8 @@ struct Constant {
     
     static let FILE_EXTENSION_PLIST = ".plist"
     static let FILENAME_GAME_LEVEL_LIST = "game_level_list.plist"
+    static let FILENAME_PRELOAD_LEVEL_LIST = "preload_level_list"
+    static let TYPE_NAME_PLIST = "plist"
     
     static let TIME_STEP = CGFloat(1.0/60.0)
     static let SPEED = CGFloat(1000)

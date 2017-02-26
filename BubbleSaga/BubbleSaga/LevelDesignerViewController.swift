@@ -19,6 +19,7 @@ class LevelDesignerViewController: UIViewController {
     private var gridViewController = GridViewController(radius: 1.0)
     var levelName: String?
     private var gameLevelList: [String] = []
+    private var preloadLevelList: [String] = []
     private let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     
     override func viewDidLoad() {
@@ -30,7 +31,14 @@ class LevelDesignerViewController: UIViewController {
         loadGrid()
         addGestureRecognizersForGrid()
         loadGameLevelList()
-        if let levelName = levelName {
+        loadPreloadLevelList()
+        guard let levelName = levelName else {
+            return
+        }
+        
+        if preloadLevelList.contains(levelName) {
+            loadPreloadLevelWithName(levelName)
+        } else {
             loadExistingLevelWithName(levelName)
         }
     }
@@ -108,6 +116,17 @@ class LevelDesignerViewController: UIViewController {
             gameLevelList = data
         }
     }
+    
+    private func loadPreloadLevelList() {
+        guard let preloadLevelListPath = Bundle.main.path(forResource: Constant.FILENAME_PRELOAD_LEVEL_LIST, ofType: Constant.TYPE_NAME_PLIST) else {
+            return
+        }
+        if FileManager.default.fileExists(atPath: preloadLevelListPath) {
+            let data = NSArray(contentsOfFile: preloadLevelListPath) as! [String]
+            preloadLevelList = data
+        }
+    }
+    
     @IBAction func bubbleSellected(_ sender: Any) {
         let bubbleSelected = sender as! UIButton
         
@@ -176,8 +195,12 @@ class LevelDesignerViewController: UIViewController {
     }
 
     @IBAction func savePressed(_ sender: Any) {
-        if levelName == nil {
+        guard let levelName = levelName else {
             askNameAndSaveWithMessage("")
+            return
+        }
+        if preloadLevelList.contains(levelName) {
+            handleSavePreloadLevel(levelName)
         } else {
             saveExistingLevelWithMessage("")
         }
@@ -211,11 +234,25 @@ class LevelDesignerViewController: UIViewController {
         
         if trimmedName == "" {
             askNameAndSaveWithMessage(Constant.ALERT_MSG_INVALID_NAME)
+        } else if preloadLevelList.contains(name) {
+            handleNameClashWithPreloadLevel(name)
         } else if gameLevelList.contains(name) {
             handleDuplicatedName(trimmedName)
         } else {
             saveLevelWithName(trimmedName)
         }
+    }
+    
+    private func handleNameClashWithPreloadLevel(_ name: String) {
+        let alert = UIAlertController(title: Constant.ALERT_MSG_CLASHED_NAME,
+                                      message: "",
+                                      preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: Constant.BUTTON_NEWNAME,
+                                      style: .cancel,
+                                      handler: { _ in self.askNameAndSaveWithMessage("") }))
+        
+        present(alert, animated: true, completion: nil)
     }
     
     private func handleDuplicatedName(_ name: String) {
@@ -226,6 +263,18 @@ class LevelDesignerViewController: UIViewController {
         alert.addAction(UIAlertAction(title: Constant.BUTTON_OVERWRITE,
                                       style: .default,
                                       handler: { _ in self.saveLevelWithName(name) }))
+        
+        alert.addAction(UIAlertAction(title: Constant.BUTTON_NEWNAME,
+                                      style: .cancel,
+                                      handler: { _ in self.askNameAndSaveWithMessage("") }))
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func handleSavePreloadLevel(_ name: String) {
+        let alert = UIAlertController(title: Constant.ALERT_MSG_SAVE_PRELOAD,
+                                      message: "",
+                                      preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: Constant.BUTTON_NEWNAME,
                                       style: .cancel,
@@ -341,6 +390,22 @@ class LevelDesignerViewController: UIViewController {
             return
         }
         guard let data = try? Data(contentsOf: fileURL) else {
+            return
+        }
+        let unarchiver = NSKeyedUnarchiver(forReadingWith: data)
+        if let gameLevel = unarchiver.decodeObject(forKey: Constant.KEY_GAME_LEVEL) as? GameLevel {
+            gridViewController.loadGameLevel(gameLevel: gameLevel)
+        }
+    }
+    
+    private func loadPreloadLevelWithName(_ name: String) {
+        guard let preloadLevelListUrl = Bundle.main.url(forResource: name, withExtension: Constant.TYPE_NAME_PLIST) else {
+            return
+        }
+        guard FileManager.default.fileExists(atPath: preloadLevelListUrl.path) else {
+            return
+        }
+        guard let data = try? Data(contentsOf: preloadLevelListUrl) else {
             return
         }
         let unarchiver = NSKeyedUnarchiver(forReadingWith: data)

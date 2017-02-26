@@ -18,6 +18,10 @@
 		C236B4B31E59A5440036FDED /* LevelDesignerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C236B4B21E59A5440036FDED /* LevelDesignerViewController.swift */; };
 		C236B4B51E59A5930036FDED /* GamePlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C236B4B41E59A5930036FDED /* GamePlayViewController.swift */; };
 		C2A7F6E21E62B4D300AAB56B /* LevelSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A7F6E11E62B4D300AAB56B /* LevelSelectionViewController.swift */; };
+		C2A7F6E81E63028100AAB56B /* Broken_Heart.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2A7F6E41E63028100AAB56B /* Broken_Heart.plist */; };
+		C2A7F6E91E63028100AAB56B /* Heart.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2A7F6E51E63028100AAB56B /* Heart.plist */; };
+		C2A7F6EA1E63028100AAB56B /* preload_level_list.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2A7F6E61E63028100AAB56B /* preload_level_list.plist */; };
+		C2A7F6EB1E63028100AAB56B /* test.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2A7F6E71E63028100AAB56B /* test.plist */; };
 		C2EC0BDA1E603AA2002F64D7 /* BubbleGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EC0BD91E603AA2002F64D7 /* BubbleGraph.swift */; };
 		C2EC0BDC1E603B0B002F64D7 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EC0BDB1E603B0B002F64D7 /* Queue.swift */; };
 		C2EC0BE01E604F3E002F64D7 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EC0BDF1E604F3E002F64D7 /* Util.swift */; };
@@ -67,6 +71,10 @@
 		C236B4B21E59A5440036FDED /* LevelDesignerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelDesignerViewController.swift; sourceTree = "<group>"; };
 		C236B4B41E59A5930036FDED /* GamePlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePlayViewController.swift; sourceTree = "<group>"; };
 		C2A7F6E11E62B4D300AAB56B /* LevelSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectionViewController.swift; sourceTree = "<group>"; };
+		C2A7F6E41E63028100AAB56B /* Broken_Heart.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Broken_Heart.plist; sourceTree = "<group>"; };
+		C2A7F6E51E63028100AAB56B /* Heart.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Heart.plist; sourceTree = "<group>"; };
+		C2A7F6E61E63028100AAB56B /* preload_level_list.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = preload_level_list.plist; sourceTree = "<group>"; };
+		C2A7F6E71E63028100AAB56B /* test.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = test.plist; sourceTree = "<group>"; };
 		C2EC0BD91E603AA2002F64D7 /* BubbleGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleGraph.swift; sourceTree = "<group>"; };
 		C2EC0BDB1E603B0B002F64D7 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		C2EC0BDF1E604F3E002F64D7 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -150,6 +158,7 @@
 				C2F7E9881E601CE500F08608 /* Bubble */,
 				C2EC0BDE1E604F2A002F64D7 /* Util */,
 				C2F7E9871E601CD700F08608 /* Constant */,
+				C2A7F6E31E63028100AAB56B /* PreloadLevels */,
 				C236B48B1E597C2A0036FDED /* Assets.xcassets */,
 				C236B48D1E597C2A0036FDED /* LaunchScreen.storyboard */,
 				C236B4901E597C2A0036FDED /* Info.plist */,
@@ -182,6 +191,17 @@
 			);
 			name = LevelSelection;
 			sourceTree = "<group>";
+		};
+		C2A7F6E31E63028100AAB56B /* PreloadLevels */ = {
+			isa = PBXGroup;
+			children = (
+				C2A7F6E41E63028100AAB56B /* Broken_Heart.plist */,
+				C2A7F6E51E63028100AAB56B /* Heart.plist */,
+				C2A7F6E61E63028100AAB56B /* preload_level_list.plist */,
+				C2A7F6E71E63028100AAB56B /* test.plist */,
+			);
+			path = PreloadLevels;
+			sourceTree = SOURCE_ROOT;
 		};
 		C2EC0BDE1E604F2A002F64D7 /* Util */ = {
 			isa = PBXGroup;
@@ -349,9 +369,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2A7F6E81E63028100AAB56B /* Broken_Heart.plist in Resources */,
 				C236B48F1E597C2A0036FDED /* LaunchScreen.storyboard in Resources */,
+				C2A7F6E91E63028100AAB56B /* Heart.plist in Resources */,
 				C236B48C1E597C2A0036FDED /* Assets.xcassets in Resources */,
 				C236B48A1E597C2A0036FDED /* Main.storyboard in Resources */,
+				C2A7F6EA1E63028100AAB56B /* preload_level_list.plist in Resources */,
+				C2A7F6EB1E63028100AAB56B /* test.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

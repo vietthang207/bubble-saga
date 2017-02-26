@@ -19,6 +19,8 @@ class GamePlayViewController: UIViewController {
     
     var levelName: String?
     var data: [[BubbleType]]?
+    private var preloadLevelList: [String] = []
+    
     private let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
 
     private var radius: CGFloat = 1.0
@@ -58,6 +60,7 @@ class GamePlayViewController: UIViewController {
         origin = CGPoint(x: x, y: y)
         loadBackground()
         loadGameOverLine()
+        loadPreloadLevelList()
         loadGrid()
         loadCannonArea()
         prepareNewProjectile()
@@ -84,7 +87,11 @@ class GamePlayViewController: UIViewController {
     private func loadGrid() {
         loadEmptyGrid(radius: radius)
         if let levelName = levelName {
-            loadLevelWithName(levelName)
+            if preloadLevelList.contains(levelName) {
+                loadPreloadLevelWithName(levelName)
+            } else {
+                loadLevelWithName(levelName)
+            }
         }
         if let data = data {
             for row in 0..<Constant.NUMB_ROWS {
@@ -101,6 +108,16 @@ class GamePlayViewController: UIViewController {
                     setBubbleOfType(data[row][col], atIndex: index)
                 }
             }
+        }
+    }
+    
+    private func loadPreloadLevelList() {
+        guard let preloadLevelListPath = Bundle.main.path(forResource: Constant.FILENAME_PRELOAD_LEVEL_LIST, ofType: Constant.TYPE_NAME_PLIST) else {
+            return
+        }
+        if FileManager.default.fileExists(atPath: preloadLevelListPath) {
+            let data = NSArray(contentsOfFile: preloadLevelListPath) as! [String]
+            preloadLevelList = data
         }
     }
     
@@ -447,6 +464,22 @@ class GamePlayViewController: UIViewController {
             return
         }
         guard let data = try? Data(contentsOf: fileURL) else {
+            return
+        }
+        let unarchiver = NSKeyedUnarchiver(forReadingWith: data)
+        if let gameLevel = unarchiver.decodeObject(forKey: Constant.KEY_GAME_LEVEL) as? GameLevel {
+            loadGameLevel(gameLevel: gameLevel)
+        }
+    }
+    
+    private func loadPreloadLevelWithName(_ name: String) {
+        guard let preloadLevelListUrl = Bundle.main.url(forResource: name, withExtension: Constant.TYPE_NAME_PLIST) else {
+            return
+        }
+        guard FileManager.default.fileExists(atPath: preloadLevelListUrl.path) else {
+            return
+        }
+        guard let data = try? Data(contentsOf: preloadLevelListUrl) else {
             return
         }
         let unarchiver = NSKeyedUnarchiver(forReadingWith: data)

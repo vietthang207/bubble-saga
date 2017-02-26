@@ -20,6 +20,7 @@ class LevelSelectionViewController: UIViewController, UITableViewDataSource, UIT
         loadGameLevelList()
         loadGameLevelTableView()
         gameLevelTableView.delegate = self
+        loadPreloadLevelList()
     }
     
     private func loadGameLevelList() {
@@ -27,6 +28,16 @@ class LevelSelectionViewController: UIViewController, UITableViewDataSource, UIT
         if FileManager.default.fileExists(atPath: gameLevelListUrl.path) {
             let data = NSArray(contentsOfFile: gameLevelListUrl.path) as! [String]
             gameLevelList = data
+        }
+    }
+    
+    private func loadPreloadLevelList() {
+        guard let preloadLevelListPath = Bundle.main.path(forResource: Constant.FILENAME_PRELOAD_LEVEL_LIST, ofType: Constant.TYPE_NAME_PLIST) else {
+            return
+        }
+        if FileManager.default.fileExists(atPath: preloadLevelListPath) {
+            let data = NSArray(contentsOfFile: preloadLevelListPath) as! [String]
+            gameLevelList.append(contentsOf: data)
         }
     }
     
