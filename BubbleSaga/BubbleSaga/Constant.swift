@@ -61,6 +61,7 @@ struct Constant {
     static let ALERT_MSG_LOAD = "Enter the level name to load"
     static let ALERT_MSG_NOT_FOUND = "No saved game level to load"
     static let ALERT_MSG_GAME_OVER = "Game over!"
+    static let ALERT_MSG_SHOW_SCORE = "Your score is "
     
     static let BUTTON_YES = "Yes"
     static let BUTTON_NO = "No"
@@ -91,6 +92,7 @@ struct Constant {
     static let ANIMATION_DUTATION_FADING = 1.0
     
     static let UPCOMMING_BUBBLE_QUEUE_SIZE = 3
+    static let DEFAULT_BUBBLE_LIMIT = 10
 }
 
 enum BubbleType: Int {

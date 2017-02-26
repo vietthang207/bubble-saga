@@ -331,6 +331,31 @@
                                                 <rect key="frame" x="40" y="24" width="64" height="64"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WPO-O7-iLu">
+                                                <rect key="frame" x="579" y="8" width="141" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h35-MO-RQI">
+                                                <rect key="frame" x="623" y="58" width="97" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bubble-green" translatesAutoresizingMaskIntoConstraints="NO" id="dxu-pX-r7o">
+                                                <rect key="frame" x="579" y="63" width="21" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmn-Ny-fDq">
+                                                <rect key="frame" x="492" y="8" width="66" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -341,9 +366,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="bubbleLimitView" destination="h35-MO-RQI" id="8LO-YZ-eoQ"/>
                         <outlet property="cannonArea" destination="oFC-9S-RaZ" id="bPu-nP-ryc"/>
                         <outlet property="gameArea" destination="cdK-g0-Asy" id="wj7-56-dBi"/>
                         <outlet property="gameOverLine" destination="7UT-n5-Gvz" id="Y11-6C-fc2"/>
+                        <outlet property="scoreView" destination="WPO-O7-iLu" id="h0I-Qe-Cj2"/>
                         <outletCollection property="upcommingBubbles" destination="xfX-75-FoI" collectionClass="NSMutableArray" id="scJ-b6-qil"/>
                         <outletCollection property="upcommingBubbles" destination="fc8-bk-1fz" collectionClass="NSMutableArray" id="qi7-oq-jAg"/>
                         <outletCollection property="upcommingBubbles" destination="mhZ-3P-jO4" collectionClass="NSMutableArray" id="KBk-Sy-OYx"/>

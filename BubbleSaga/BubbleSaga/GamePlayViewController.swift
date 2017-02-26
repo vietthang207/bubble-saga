@@ -14,6 +14,8 @@ class GamePlayViewController: UIViewController {
     @IBOutlet var cannonArea: UIView!
     @IBOutlet var gameOverLine: UIView!
     @IBOutlet var upcommingBubbles: [UIImageView]!
+    @IBOutlet var scoreView: UITextField!
+    @IBOutlet var bubbleLimitView: UITextField!
     
     var levelName: String?
     private let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -40,6 +42,10 @@ class GamePlayViewController: UIViewController {
     private var cannonView = UIImageView()
     private var cannonBaseView = UIImageView()
     private var cannonDirection = CGVector(dx: 0, dy: 1)
+    
+    private var bubbleLimit: Int = Constant.DEFAULT_BUBBLE_LIMIT
+    private var score: Int = 0
+    private var isGameOver: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,16 +124,23 @@ class GamePlayViewController: UIViewController {
     
     // Run only once when view loading
     private func prepareNewProjectile() {
-        while upcomingBubbleType.count < Constant.UPCOMMING_BUBBLE_QUEUE_SIZE {
+        while upcomingBubbleType.count < Constant.UPCOMMING_BUBBLE_QUEUE_SIZE && bubbleLimit > 0 {
             upcomingBubbleType.enqueue(Util.getRandomBubbleType())
+            bubbleLimit -= 1
         }
         
         let physicalProjectile = Projectile(center: origin, radius: radius, velocity: CGVector(dx: 0, dy: 0))
         guard let startingType = try? upcomingBubbleType.dequeue() else {
             return
         }
-        upcomingBubbleType.enqueue(Util.getRandomBubbleType())
+        if bubbleLimit > 0 {
+            upcomingBubbleType.enqueue(Util.getRandomBubbleType())
+            bubbleLimit -= 1
+        }
         let upcomingBubbleArray = upcomingBubbleType.toArray()
+        for i in 0..<upcommingBubbles.count {
+            upcommingBubbles[i].image = Util.getImageForBubbleType(.empty)
+        }
         for i in 0..<upcomingBubbleArray.count {
             upcommingBubbles[i].image = Util.getImageForBubbleType(upcomingBubbleArray[i])
         }
@@ -206,6 +219,11 @@ class GamePlayViewController: UIViewController {
     }
     
     func gameLoop() {
+        scoreView.text = String(score)
+        bubbleLimitView.text = String(bubbleLimit)
+        if bubbleLimit <= 0 && projectileControllers.count == 0 {
+            showGameOverPopup()
+        }
         _ = world.simulate(timeStep: Constant.TIME_STEP)
         for i in (0..<projectileControllers.count).reversed() {
             let projectileController = projectileControllers[i]
@@ -216,7 +234,9 @@ class GamePlayViewController: UIViewController {
                 if index.row == Constant.NUMB_ROWS - 1 {
                     //showGameOverPopup()
                 }
-                snapProjectile(projectileController, toIndex: index)
+                if isProjectile(physicalProjectile, closeToIndex: index) {
+                    snapProjectile(projectileController, toIndex: index)
+                }
                 projectileController.view.removeFromSuperview()
                 projectileControllers.remove(at: i)
                 world.removeProjectileAtIndex(i)
@@ -239,6 +259,13 @@ class GamePlayViewController: UIViewController {
         self.clearBubbleByIndexList(midAirBubbles)
     }
     
+    func isProjectile(_ projectile: Projectile, closeToIndex index: Index) -> Bool {
+        let center = projectile.getCenter()
+        let location = Util.getCenterForBubbleAt(row: index.row, col: index.col, radius: radius)
+        let distance = center.subtract(location).length()
+        return distance < radius
+    }
+    
     private func clearBubbleByIndexList(_ list: [Index]) {
         for index in list {
             clearBubbleAtIndex(index)
@@ -248,6 +275,9 @@ class GamePlayViewController: UIViewController {
     private func clearBubbleAtIndex(_ index: Index) {
         let row = index.row
         let col = index.col
+        if bubbleControllers[row][col].getType() != .empty {
+            score += 1
+        }
         self.world.deleteBubbleAtIndex(index)
         
         UIView.animate(withDuration: Constant.ANIMATION_DUTATION_FADING, animations: {
@@ -257,8 +287,12 @@ class GamePlayViewController: UIViewController {
     }
     
     private func showGameOverPopup() {
+        if isGameOver {
+            return
+        }
+        isGameOver = true
         let alert = UIAlertController(title: Constant.ALERT_MSG_GAME_OVER,
-                                      message: "",
+                                      message: Constant.ALERT_MSG_SHOW_SCORE + String(score),
                                       preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: Constant.BUTTON_OK,
