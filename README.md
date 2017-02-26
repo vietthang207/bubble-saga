@@ -156,6 +156,11 @@ II. Test Level Designer
 		+ Choose save as and keyin a preload level name (i.e. "Heart") an alert should shown up 
 		  that force you to choose another name.
 
+		g. Test save with special name:
+		+ Modify some bubble
+		+ Save and enter the name ".", it should be saved, and you can load it later
+		+ repeat with "/" and "\"
+
 
 	4 Test implement of reset
 
@@ -218,6 +223,7 @@ III. Test Game Play
 			and snap to the nearest empty cell
 		- A bubble will be created at the origin (launching point) when the projectile stop and snap 
 			to the empty cell
+		- If it cannot find a cell to snap in, it will fall out of the screen.
 
 	6. Test multiple bubbles:
 		- Quickly tap to launch a few bubbles, all of them should be launch and moved normally.
