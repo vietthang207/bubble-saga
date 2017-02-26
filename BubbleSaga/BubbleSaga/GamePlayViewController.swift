@@ -94,13 +94,13 @@ class GamePlayViewController: UIViewController {
     
     private func loadCannon() {
         let cannonImage = UIImage(named: Constant.IMAGE_NAME_CANNON)
-        let rect = CGRect(x: 0, y: 0, width: 220, height: 400)
+        let rect = CGRect(x: 0, y: 0, width: Constant.CANNON_IMAGE_WIDTH, height: Constant.CANNON_IMAGE_HEIGHT)
         let imageRef = cannonImage?.cgImage?.cropping(to: rect)
         let image = UIImage(cgImage: imageRef!)
         cannonView.removeFromSuperview()
         cannonView = UIImageView(image: image)
-        let cannonHeight = 3 * radius
-        let cannonWidth = 2 * radius
+        let cannonHeight = Constant.RATIO_CANNON_HEIGHT_OVER_RADIUS * radius
+        let cannonWidth = Constant.RATIO_CANNON_WIDTH_OVER_RADIUS * radius
         let x = origin.x - cannonWidth / 2
         let y = origin.y - cannonHeight / 2
         cannonView.frame = CGRect(x: x, y: y, width: cannonWidth, height: cannonHeight)
@@ -110,7 +110,7 @@ class GamePlayViewController: UIViewController {
         let cannonBaseImage = UIImage(named: Constant.IMAGE_NAME_CANNON_BASE)
         cannonBaseView.removeFromSuperview()
         cannonBaseView = UIImageView(image: cannonBaseImage)
-        cannonBaseView.frame = CGRect(x: x, y: y + 31, width: cannonWidth, height: cannonWidth)
+        cannonBaseView.frame = CGRect(x: x, y: y + Constant.FRAME_DIFFERENT_Y_AXIS, width: cannonWidth, height: cannonWidth)
         gameArea.addSubview(cannonBaseView)
     }
     

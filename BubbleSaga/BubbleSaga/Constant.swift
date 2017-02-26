@@ -93,6 +93,12 @@ struct Constant {
     
     static let UPCOMMING_BUBBLE_QUEUE_SIZE = 3
     static let DEFAULT_BUBBLE_LIMIT = 10
+    
+    static let RATIO_CANNON_HEIGHT_OVER_RADIUS: CGFloat = 3.8
+    static let RATIO_CANNON_WIDTH_OVER_RADIUS: CGFloat = 2.2
+    static let FRAME_DIFFERENT_Y_AXIS: CGFloat = 39
+    static let CANNON_IMAGE_WIDTH = 220
+    static let CANNON_IMAGE_HEIGHT = 400
 }
 
 enum BubbleType: Int {
