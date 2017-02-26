@@ -17,7 +17,7 @@ class LevelDesignerViewController: UIViewController {
     private var radius: CGFloat = 1.0
     private var paletteState: PaletteState = .noneSelected
     private var gridViewController = GridViewController(radius: 1.0)
-    private var levelName: String?
+    var levelName: String?
     private var gameLevelList: [String] = []
     private let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     
@@ -30,6 +30,9 @@ class LevelDesignerViewController: UIViewController {
         loadGrid()
         addGestureRecognizersForGrid()
         loadGameLevelList()
+        if let levelName = levelName {
+            loadExistingLevelWithName(levelName)
+        }
     }
     
     private func loadBackground() {
@@ -294,9 +297,8 @@ class LevelDesignerViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let data = gridViewController.getBubbleData()
         if let gamePlayViewController = segue.destination as? GamePlayViewController {
-            gamePlayViewController.data = data
+            gamePlayViewController.levelName = levelName
         }
         
     }

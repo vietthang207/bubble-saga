@@ -34,9 +34,13 @@ struct Constant {
     static let BUTTON_NAME_STAR = "star"
     
     static let REUSE_IDENTIFIER = "BubbleCell"
+    static let REUSE_IDENTIFIER_TABLE_VIEW = "GameLevelNameCell"
+    static let SEGUE_IDENTIFIER_SELECTION_TO_PLAY = "SelectionToPlay"
+    static let SEGUE_IDENTIFIER_SELECTION_TO_DESIGNER = "SelectionToDesigner"
     
     static let NUMB_COLUMNS = 12
     static let NUMB_ROWS = 9
+    static let NUMB_TABLE_VIEW_SECTION = 1
     
     static let ALPHA_HALF = CGFloat(0.5)
     static let ALPHA_FULL = CGFloat(1.0)

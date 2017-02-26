@@ -22,11 +22,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCC-qQ-g4L">
-                                <rect key="frame" x="361" y="400" width="46" height="30"/>
+                                <rect key="frame" x="210" y="400" width="282" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="LevelDesigner"/>
                                 <connections>
                                     <segue destination="ZTQ-g2-l4V" kind="show" id="XzE-v7-3QB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HrZ-Za-wQR">
+                                <rect key="frame" x="297" y="474" width="125" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="LevelSelection"/>
+                                <connections>
+                                    <segue destination="Dzf-T0-ThQ" kind="show" id="Oyh-bg-SCl"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -39,7 +47,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="852" y="758"/>
+            <point key="canvasLocation" x="851.5625" y="757.6171875"/>
         </scene>
         <!--Level Designer View Controller-->
         <scene sceneID="yyi-2H-axi">
@@ -230,7 +238,61 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1aH-fc-B1d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1513.28125" y="757.6171875"/>
+            <point key="canvasLocation" x="1513" y="1072"/>
+        </scene>
+        <!--Level Selection View Controller-->
+        <scene sceneID="ERy-5S-wCm">
+            <objects>
+                <viewController id="Dzf-T0-ThQ" customClass="LevelSelectionViewController" customModule="BubbleSaga" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bac-BK-f8X"/>
+                        <viewControllerLayoutGuide type="bottom" id="5HF-Jz-8fq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eDC-2M-I6e">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zX4-SK-ryU">
+                                <rect key="frame" x="0.0" y="72" width="394" height="809"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GameLevelNameCell" id="Z51-En-F7e">
+                                        <rect key="frame" x="0.0" y="28" width="394" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z51-En-F7e" id="bAw-48-NXv">
+                                            <rect key="frame" x="0.0" y="0.0" width="394" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Yo-Dw-YxK">
+                                <rect key="frame" x="505" y="212" width="152" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <segue destination="5qS-F5-cc3" kind="show" identifier="SelectionToPlay" id="Edm-nS-rm8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6hV-Iw-GPY">
+                                <rect key="frame" x="519" y="373" width="152" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit"/>
+                                <connections>
+                                    <segue destination="ZTQ-g2-l4V" kind="show" identifier="SelectionToDesigner" id="7cd-Dy-faW"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="gameLevelTableView" destination="zX4-SK-ryU" id="6o6-4e-Xxo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8ME-js-HrX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1513" y="376"/>
         </scene>
         <!--Game Play View Controller-->
         <scene sceneID="nAY-yY-KPX">
@@ -321,4 +383,8 @@
         <image name="bubble-star" width="168" height="168"/>
         <image name="erase" width="168" height="168"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Edm-nS-rm8"/>
+        <segue reference="7cd-Dy-faW"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -17,6 +17,7 @@
 		C236B4A51E597C2A0036FDED /* BubbleSagaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C236B4A41E597C2A0036FDED /* BubbleSagaUITests.swift */; };
 		C236B4B31E59A5440036FDED /* LevelDesignerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C236B4B21E59A5440036FDED /* LevelDesignerViewController.swift */; };
 		C236B4B51E59A5930036FDED /* GamePlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C236B4B41E59A5930036FDED /* GamePlayViewController.swift */; };
+		C2A7F6E21E62B4D300AAB56B /* LevelSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A7F6E11E62B4D300AAB56B /* LevelSelectionViewController.swift */; };
 		C2EC0BDA1E603AA2002F64D7 /* BubbleGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EC0BD91E603AA2002F64D7 /* BubbleGraph.swift */; };
 		C2EC0BDC1E603B0B002F64D7 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EC0BDB1E603B0B002F64D7 /* Queue.swift */; };
 		C2EC0BE01E604F3E002F64D7 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EC0BDF1E604F3E002F64D7 /* Util.swift */; };
@@ -65,6 +66,7 @@
 		C236B4A61E597C2A0036FDED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C236B4B21E59A5440036FDED /* LevelDesignerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelDesignerViewController.swift; sourceTree = "<group>"; };
 		C236B4B41E59A5930036FDED /* GamePlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePlayViewController.swift; sourceTree = "<group>"; };
+		C2A7F6E11E62B4D300AAB56B /* LevelSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectionViewController.swift; sourceTree = "<group>"; };
 		C2EC0BD91E603AA2002F64D7 /* BubbleGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleGraph.swift; sourceTree = "<group>"; };
 		C2EC0BDB1E603B0B002F64D7 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		C2EC0BDF1E604F3E002F64D7 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				C236B4841E597C2A0036FDED /* AppDelegate.swift */,
 				C236B4881E597C2A0036FDED /* Main.storyboard */,
 				C236B4861E597C2A0036FDED /* GameMenuViewController.swift */,
+				C2A7F6E01E62B4B900AAB56B /* LevelSelection */,
 				C2F7E9891E601CFC00F08608 /* LevelDesigner */,
 				C2F7E98A1E601D0600F08608 /* GamePlay */,
 				C2F7E9881E601CE500F08608 /* Bubble */,
@@ -170,6 +173,14 @@
 				C236B4A61E597C2A0036FDED /* Info.plist */,
 			);
 			path = BubbleSagaUITests;
+			sourceTree = "<group>";
+		};
+		C2A7F6E01E62B4B900AAB56B /* LevelSelection */ = {
+			isa = PBXGroup;
+			children = (
+				C2A7F6E11E62B4D300AAB56B /* LevelSelectionViewController.swift */,
+			);
+			name = LevelSelection;
 			sourceTree = "<group>";
 		};
 		C2EC0BDE1E604F2A002F64D7 /* Util */ = {
@@ -415,6 +426,7 @@
 			files = (
 				C2F7E98E1E601D9600F08608 /* BubbleView.swift in Sources */,
 				C236B4871E597C2A0036FDED /* GameMenuViewController.swift in Sources */,
+				C2A7F6E21E62B4D300AAB56B /* LevelSelectionViewController.swift in Sources */,
 				C2EC0BE41E605D56002F64D7 /* GameLevel.swift in Sources */,
 				C2F7E9941E601DC700F08608 /* Constant.swift in Sources */,
 				C2EC0BDC1E603B0B002F64D7 /* Queue.swift in Sources */,

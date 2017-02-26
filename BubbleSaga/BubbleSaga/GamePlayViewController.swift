@@ -15,7 +15,9 @@ class GamePlayViewController: UIViewController {
     @IBOutlet var gameOverLine: UIView!
     @IBOutlet var upcommingBubbles: [UIImageView]!
     
-    var data: [[BubbleType]]?
+    var levelName: String?
+    private let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+
     private var radius: CGFloat = 1.0
     
     private var upcomingBubbleType = Queue<BubbleType>()
@@ -73,21 +75,8 @@ class GamePlayViewController: UIViewController {
     
     private func loadGrid() {
         loadEmptyGrid(radius: radius)
-        if let data = data {
-            for row in 0..<Constant.NUMB_ROWS {
-                var numberBubbles = Constant.NUMB_COLUMNS
-                if row % 2 == 1 {
-                    numberBubbles -= 1
-                }
-                
-                for col in 0..<numberBubbles {
-                    if data[row][col] == .empty {
-                        continue
-                    }
-                    let index = Index(row: row, col: col)
-                    setBubbleOfType(data[row][col], atIndex: index)
-                }
-            }
+        if let levelName = levelName {
+            loadLevelWithName(levelName)
         }
         
     }
@@ -335,12 +324,47 @@ class GamePlayViewController: UIViewController {
         return result
     }
     
-    func setBubbleOfType(_ bubbleType: BubbleType, atIndex index: Index) {
+    private func setBubbleOfType(_ bubbleType: BubbleType, atIndex index: Index) {
+        if bubbleType == .empty {
+            return
+        }
         bubbleControllers[index.row][index.col].changeType(bubbleType)
         let center = Util.getCenterForBubbleAt(row: index.row, col: index.col, radius: radius)
         let newBubble = CircleCollidable(center: center, radius: radius)
         world.addBubbleAtIndex(index, bubble: newBubble)
         graph.changeBubbleTypeAt(row: index.row, col: index.col, type: bubbleType)
+    }
+    
+    private func loadLevelWithName(_ name: String) {
+        levelName = name
+        let fileName = name + Constant.FILE_EXTENSION_PLIST
+        let fileURL = documentDirectory.appendingPathComponent(fileName)
+        
+        guard FileManager.default.fileExists(atPath: fileURL.path) else {
+            return
+        }
+        guard let data = try? Data(contentsOf: fileURL) else {
+            return
+        }
+        let unarchiver = NSKeyedUnarchiver(forReadingWith: data)
+        if let gameLevel = unarchiver.decodeObject(forKey: Constant.KEY_GAME_LEVEL) as? GameLevel {
+            loadGameLevel(gameLevel: gameLevel)
+        }
+    }
+    
+    private func loadGameLevel(gameLevel: GameLevel) {
+        let list = gameLevel.getBubbleCollection()
+        var counter = 0
+        for row in 0..<Constant.NUMB_ROWS {
+            var numBubbles = Constant.NUMB_COLUMNS
+            if row % 2 == 1 {
+                numBubbles -= 1
+            }
+            for col in 0..<numBubbles {
+                setBubbleOfType(BubbleType(rawValue: Int(list[counter]))!, atIndex: Index(row: row, col: col))
+                counter += 1
+            }
+        }
     }
     
 }
